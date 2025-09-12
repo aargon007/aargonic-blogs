@@ -1,0 +1,133 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string[];
+  image?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  section?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  description,
+  keywords = [],
+  image,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+  author,
+  section,
+  tags = [],
+} = Astro.props;
+
+import { SITE_CONFIG } from '../lib/constants';
+import { Header, Footer } from '../components/layout';
+import { Meta, JsonLd } from '../components/seo';
+
+const fullTitle = title ? `${title} | ${SITE_CONFIG.name}` : SITE_CONFIG.name;
+---
+
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <Meta
+      title={title}
+      description={description}
+      keywords={keywords}
+      image={image}
+      type={type}
+      publishedTime={publishedTime}
+      modifiedTime={modifiedTime}
+      author={author}
+      section={section}
+      tags={tags}
+    />
+    
+    <JsonLd 
+      type="website" 
+      data={{
+        name: SITE_CONFIG.name,
+        description: SITE_CONFIG.description,
+        url: SITE_CONFIG.url,
+      }}
+    />
+    
+    {type === 'article' && (
+      <JsonLd 
+        type="article" 
+        data={{
+          title,
+          description,
+          image,
+          publishedTime,
+          modifiedTime,
+          author,
+          category: section,
+          keywords,
+          url: Astro.url.href,
+        }}
+      />
+    )}
+  </head>
+  
+  <body class="h-full flex flex-col bg-gray-50">
+    <Header client:load />
+    <main class="flex-grow">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+
+<style is:global>
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+  }
+  
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  /* Focus styles */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+</style>
