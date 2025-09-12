@@ -1,11 +1,109 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Hero, FeaturedPosts, CategorySection, Newsletter } from '../components/home';
+import { SITE_CONFIG } from '../lib/constants';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// In a real application, you would fetch this data from your database
+// For now, we'll use placeholder data to show the design
+const featuredPosts = [
+  {
+    _id: { toString: () => '1' },
+    title: 'The Future of Fintech: How AI is Revolutionizing Financial Services',
+    slug: 'future-of-fintech-ai-revolution',
+    excerpt: 'Discover how artificial intelligence is transforming the financial industry, from automated trading to personalized banking experiences.',
+    content: 'Full article content here...',
+    featuredImage: '/images/hero/fintech-ai.jpg',
+    category: 'fintech',
+    tags: ['ai', 'machine-learning', 'banking'],
+    author: { toString: () => 'author1' },
+    status: 'published' as const,
+    publishedAt: new Date('2024-01-15'),
+    createdAt: new Date('2024-01-15'),
+    updatedAt: new Date('2024-01-15'),
+    views: 1250,
+    readingTime: 8,
+    seo: {
+      metaTitle: 'The Future of Fintech and AI Revolution',
+      metaDescription: 'How AI is transforming financial services and what it means for the future.',
+      keywords: ['fintech', 'ai', 'artificial intelligence', 'banking']
+    }
+  },
+  {
+    _id: { toString: () => '2' },
+    title: 'IoT Security Best Practices: Protecting Your Connected Devices',
+    slug: 'iot-security-best-practices',
+    excerpt: 'Learn essential security measures to protect your IoT devices from cyber threats and data breaches.',
+    content: 'Full article content here...',
+    featuredImage: '/images/hero/iot-security.jpg',
+    category: 'security',
+    tags: ['iot', 'cybersecurity', 'privacy'],
+    author: { toString: () => 'author2' },
+    status: 'published' as const,
+    publishedAt: new Date('2024-01-12'),
+    createdAt: new Date('2024-01-12'),
+    updatedAt: new Date('2024-01-12'),
+    views: 890,
+    readingTime: 6,
+    seo: {
+      metaTitle: 'IoT Security Best Practices Guide',
+      metaDescription: 'Essential security measures for protecting IoT devices from cyber threats.',
+      keywords: ['iot', 'security', 'cybersecurity', 'best practices']
+    }
+  },
+  {
+    _id: { toString: () => '3' },
+    title: 'Tech Acquisition Trends: What to Expect in 2024',
+    slug: 'tech-acquisition-trends-2024',
+    excerpt: 'Analysis of the latest merger and acquisition trends in the technology sector.',
+    content: 'Full article content here...',
+    featuredImage: '/images/hero/tech-acquisition.jpg',
+    category: 'acquisition',
+    tags: ['mergers', 'acquisitions', 'market-analysis'],
+    author: { toString: () => 'author3' },
+    status: 'published' as const,
+    publishedAt: new Date('2024-01-10'),
+    createdAt: new Date('2024-01-10'),
+    updatedAt: new Date('2024-01-10'),
+    views: 650,
+    readingTime: 5,
+    seo: {
+      metaTitle: 'Tech Acquisition Trends 2024',
+      metaDescription: 'Latest merger and acquisition trends in the technology sector.',
+      keywords: ['acquisition', 'mergers', 'technology', 'trends']
+    }
+  },
+  {
+    _id: { toString: () => '4' },
+    title: 'Building Scalable AI Systems: Architecture and Best Practices',
+    slug: 'building-scalable-ai-systems',
+    excerpt: 'A comprehensive guide to designing and implementing scalable artificial intelligence systems.',
+    content: 'Full article content here...',
+    featuredImage: '/images/hero/ai-systems.jpg',
+    category: 'ai',
+    tags: ['ai', 'architecture', 'scalability'],
+    author: { toString: () => 'author4' },
+    status: 'published' as const,
+    publishedAt: new Date('2024-01-08'),
+    createdAt: new Date('2024-01-08'),
+    updatedAt: new Date('2024-01-08'),
+    views: 1100,
+    readingTime: 12,
+    seo: {
+      metaTitle: 'Building Scalable AI Systems',
+      metaDescription: 'Comprehensive guide to designing scalable AI systems.',
+      keywords: ['ai', 'artificial intelligence', 'architecture', 'scalability']
+    }
+  }
+];
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout 
+  title="Home"
+  description={SITE_CONFIG.description}
+  keywords={['technology', 'fintech', 'iot', 'security', 'ai', 'acquisition', 'innovation']}
+>
+  <Hero client:load />
+  <FeaturedPosts posts={featuredPosts} client:load />
+  <CategorySection client:load />
+  <Newsletter client:load />
+</BaseLayout>
