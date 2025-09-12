@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import type { User } from '../types/user';
+import type { User } from '../types';
 
 const JWT_SECRET = import.meta.env.JWT_SECRET || 'fallback-secret';
 const JWT_EXPIRES_IN = import.meta.env.JWT_EXPIRES_IN || '7d';

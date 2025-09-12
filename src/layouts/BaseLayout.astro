@@ -28,6 +28,7 @@ const {
 import { SITE_CONFIG } from '../lib/constants';
 import { Header, Footer } from '../components/layout';
 import { Meta, JsonLd } from '../components/seo';
+import '../styles/global.css';
 
 const fullTitle = title ? `${title} | ${SITE_CONFIG.name}` : SITE_CONFIG.name;
 ---
@@ -89,45 +90,5 @@ const fullTitle = title ? `${title} | ${SITE_CONFIG.name}` : SITE_CONFIG.name;
 </html>
 
 <style is:global>
-  html {
-    scroll-behavior: smooth;
-  }
-  
-  /* Custom scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-  
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  ::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 4px;
-  }
-  
-  ::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-  }
-  
-  /* Line clamp utilities */
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-  
-  /* Focus styles */
-  .focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-  }
+  /* Additional global styles specific to layout */
 </style>

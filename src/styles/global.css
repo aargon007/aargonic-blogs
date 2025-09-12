@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
 /* Custom CSS Variables */
 :root {
@@ -72,10 +70,6 @@
   *:focus {
     @apply outline-none;
   }
-
-  .focus-ring {
-    @apply focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-  }
 }
 
 /* Component Styles */
@@ -121,7 +115,7 @@
   }
 
   .form-textarea {
-    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 resize-vertical;
+    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
   }
 
   .form-select {
@@ -155,15 +149,6 @@
 
   .badge-indigo {
     @apply bg-indigo-100 text-indigo-800;
-  }
-
-  /* Animation utilities */
-  .animate-fade-in {
-    animation: fadeIn 0.5s ease-in-out;
-  }
-
-  .animate-slide-up {
-    animation: slideUp 0.5s ease-out;
   }
 }
 
@@ -219,6 +204,11 @@
   .glass {
     @apply bg-white/10 backdrop-blur-md border border-white/20;
   }
+
+  /* Focus ring utility */
+  .focus-ring {
+    @apply focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
 }
 
 /* Animations */
@@ -240,6 +230,32 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
 }
 
 /* Dark mode support (future enhancement) */
