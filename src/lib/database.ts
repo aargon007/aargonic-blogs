@@ -1,7 +1,8 @@
 import mongoose from 'mongoose';
 
 // MongoDB connection configuration
-const MONGODB_URI = import.meta.env.MONGODB_URI || 'mongodb://localhost:27017/aargonic-blog';
+const MONGODB_URI =
+    import.meta.env.MONGODB_URI || 'mongodb://localhost:27017/aargonic-blog';
 
 if (!MONGODB_URI) {
     throw new Error('Please define the MONGODB_URI environment variable');

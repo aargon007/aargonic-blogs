@@ -1,14 +1,18 @@
 // Format date to readable string
-export function formatDate(date: Date | string, format: 'short' | 'long' | 'relative' = 'long'): string {
+export function formatDate(
+    date: Date | string,
+    format: 'short' | 'long' | 'relative' = 'long'
+): string {
     const dateObj = typeof date === 'string' ? new Date(date) : date;
 
     if (format === 'relative') {
         return getRelativeTime(dateObj);
     }
 
-    const options: Intl.DateTimeFormatOptions = format === 'short'
-        ? { year: 'numeric', month: 'short', day: 'numeric' }
-        : { year: 'numeric', month: 'long', day: 'numeric' };
+    const options: Intl.DateTimeFormatOptions =
+        format === 'short'
+            ? { year: 'numeric', month: 'short', day: 'numeric' }
+            : { year: 'numeric', month: 'long', day: 'numeric' };
 
     return dateObj.toLocaleDateString('en-US', options);
 }
@@ -23,9 +27,12 @@ function getRelativeTime(date: Date): string {
     const diffInDays = Math.floor(diffInHours / 24);
 
     if (diffInSecs < 60) return 'Just now';
-    if (diffInMins < 60) return `${diffInMins} minute${diffInMins > 1 ? 's' : ''} ago`;
-    if (diffInHours < 24) return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
-    if (diffInDays < 7) return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
+    if (diffInMins < 60)
+        return `${diffInMins} minute${diffInMins > 1 ? 's' : ''} ago`;
+    if (diffInHours < 24)
+        return `${diffInHours} hour${diffInHours > 1 ? 's' : ''} ago`;
+    if (diffInDays < 7)
+        return `${diffInDays} day${diffInDays > 1 ? 's' : ''} ago`;
 
     return formatDate(date, 'short');
 }

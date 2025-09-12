@@ -14,7 +14,9 @@ export interface JWTPayload {
 }
 
 // Generate JWT token
-export function generateToken(user: Pick<User, '_id' | 'email' | 'role'>): string {
+export function generateToken(
+    user: Pick<User, '_id' | 'email' | 'role'>
+): string {
     const payload: Omit<JWTPayload, 'iat' | 'exp'> = {
         userId: user._id.toString(),
         email: user.email,
@@ -40,12 +42,17 @@ export async function hashPassword(password: string): Promise<string> {
 }
 
 // Compare password
-export async function comparePassword(password: string, hashedPassword: string): Promise<boolean> {
+export async function comparePassword(
+    password: string,
+    hashedPassword: string
+): Promise<boolean> {
     return bcrypt.compare(password, hashedPassword);
 }
 
 // Extract token from Authorization header
-export function extractTokenFromHeader(authHeader: string | null): string | null {
+export function extractTokenFromHeader(
+    authHeader: string | null
+): string | null {
     if (!authHeader || !authHeader.startsWith('Bearer ')) {
         return null;
     }
@@ -61,6 +68,7 @@ export function isValidEmail(email: string): boolean {
 // Validate password strength
 export function isValidPassword(password: string): boolean {
     // At least 8 characters, 1 uppercase, 1 lowercase, 1 number
-    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
+    const passwordRegex =
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d@$!%*?&]{8,}$/;
     return passwordRegex.test(password);
 }

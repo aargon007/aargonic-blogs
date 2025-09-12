@@ -24,9 +24,11 @@ export function Header() {
                                 className="h-8 w-auto"
                                 src="/logo.png"
                                 alt={SITE_CONFIG.name}
-                                onError={(e) => {
+                                onError={e => {
                                     e.currentTarget.style.display = 'none';
-                                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                                    e.currentTarget.nextElementSibling?.classList.remove(
+                                        'hidden'
+                                    );
                                 }}
                             />
                             <span className="hidden ml-2 text-xl font-bold text-gray-900">
@@ -37,7 +39,7 @@ export function Header() {
 
                     {/* Desktop Navigation */}
                     <div className="hidden md:flex items-center space-x-8">
-                        {navigation.map((item) => (
+                        {navigation.map(item => (
                             <a
                                 key={item.name}
                                 href={item.href}
@@ -58,9 +60,15 @@ export function Header() {
                         >
                             <span className="sr-only">Open main menu</span>
                             {isMenuOpen ? (
-                                <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                                <XMarkIcon
+                                    className="block h-6 w-6"
+                                    aria-hidden="true"
+                                />
                             ) : (
-                                <Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+                                <Bars3Icon
+                                    className="block h-6 w-6"
+                                    aria-hidden="true"
+                                />
                             )}
                         </button>
                     </div>
@@ -70,7 +78,7 @@ export function Header() {
                 {isMenuOpen && (
                     <div className="md:hidden">
                         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                            {navigation.map((item) => (
+                            {navigation.map(item => (
                                 <a
                                     key={item.name}
                                     href={item.href}

@@ -8,7 +8,10 @@ export function slugify(text: string): string {
 }
 
 // Generate unique slug by adding number suffix if needed
-export function generateUniqueSlug(baseSlug: string, existingSlugs: string[]): string {
+export function generateUniqueSlug(
+    baseSlug: string,
+    existingSlugs: string[]
+): string {
     let slug = slugify(baseSlug);
     let counter = 1;
     const originalSlug = slug;

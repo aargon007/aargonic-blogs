@@ -27,16 +27,30 @@ export function Meta({
     section,
     tags = [],
 }: MetaProps) {
-    const fullTitle = title ? `${title} | ${SITE_CONFIG.name}` : SITE_CONFIG.name;
-    const fullImageUrl = image.startsWith('http') ? image : `${SITE_CONFIG.url}${image}`;
-    const allKeywords = [...keywords, 'technology', 'fintech', 'iot', 'security', 'ai', 'acquisition'];
+    const fullTitle = title
+        ? `${title} | ${SITE_CONFIG.name}`
+        : SITE_CONFIG.name;
+    const fullImageUrl = image.startsWith('http')
+        ? image
+        : `${SITE_CONFIG.url}${image}`;
+    const allKeywords = [
+        ...keywords,
+        'technology',
+        'fintech',
+        'iot',
+        'security',
+        'ai',
+        'acquisition',
+    ];
 
     return (
         <>
             {/* Basic Meta Tags */}
             <title>{fullTitle}</title>
             <meta name="description" content={description} />
-            {keywords.length > 0 && <meta name="keywords" content={allKeywords.join(', ')} />}
+            {keywords.length > 0 && (
+                <meta name="keywords" content={allKeywords.join(', ')} />
+            )}
             <meta name="author" content={author || SITE_CONFIG.author} />
 
             {/* Open Graph */}
@@ -50,11 +64,25 @@ export function Meta({
             {/* Article specific Open Graph */}
             {type === 'article' && (
                 <>
-                    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
-                    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
-                    {author && <meta property="article:author" content={author} />}
-                    {section && <meta property="article:section" content={section} />}
-                    {tags.map((tag) => (
+                    {publishedTime && (
+                        <meta
+                            property="article:published_time"
+                            content={publishedTime}
+                        />
+                    )}
+                    {modifiedTime && (
+                        <meta
+                            property="article:modified_time"
+                            content={modifiedTime}
+                        />
+                    )}
+                    {author && (
+                        <meta property="article:author" content={author} />
+                    )}
+                    {section && (
+                        <meta property="article:section" content={section} />
+                    )}
+                    {tags.map(tag => (
                         <meta key={tag} property="article:tag" content={tag} />
                     ))}
                 </>
@@ -73,12 +101,31 @@ export function Meta({
 
             {/* Favicon */}
             <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-            <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-            <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-            <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+            <link
+                rel="icon"
+                type="image/png"
+                sizes="32x32"
+                href="/favicon-32x32.png"
+            />
+            <link
+                rel="icon"
+                type="image/png"
+                sizes="16x16"
+                href="/favicon-16x16.png"
+            />
+            <link
+                rel="apple-touch-icon"
+                sizes="180x180"
+                href="/apple-touch-icon.png"
+            />
 
             {/* RSS Feed */}
-            <link rel="alternate" type="application/rss+xml" title={`${SITE_CONFIG.name} RSS Feed`} href="/rss.xml" />
+            <link
+                rel="alternate"
+                type="application/rss+xml"
+                title={`${SITE_CONFIG.name} RSS Feed`}
+                href="/rss.xml"
+            />
         </>
     );
 }

@@ -8,14 +8,12 @@ interface CardProps {
 
 export function Card({ children, className = '', hover = false }: CardProps) {
     const baseClasses = 'bg-white rounded-lg shadow-md border border-gray-200';
-    const hoverClasses = hover ? 'hover:shadow-lg transition-shadow duration-200' : '';
+    const hoverClasses = hover
+        ? 'hover:shadow-lg transition-shadow duration-200'
+        : '';
     const classes = `${baseClasses} ${hoverClasses} ${className}`;
 
-    return (
-        <div className={classes}>
-            {children}
-        </div>
-    );
+    return <div className={classes}>{children}</div>;
 }
 
 interface CardHeaderProps {
@@ -24,11 +22,7 @@ interface CardHeaderProps {
 }
 
 export function CardHeader({ children, className = '' }: CardHeaderProps) {
-    return (
-        <div className={`p-6 pb-4 ${className}`}>
-            {children}
-        </div>
-    );
+    return <div className={`p-6 pb-4 ${className}`}>{children}</div>;
 }
 
 interface CardContentProps {
@@ -37,11 +31,7 @@ interface CardContentProps {
 }
 
 export function CardContent({ children, className = '' }: CardContentProps) {
-    return (
-        <div className={`p-6 pt-0 ${className}`}>
-            {children}
-        </div>
-    );
+    return <div className={`p-6 pt-0 ${className}`}>{children}</div>;
 }
 
 interface CardFooterProps {

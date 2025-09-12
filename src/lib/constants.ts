@@ -1,7 +1,8 @@
 // Site configuration constants
 export const SITE_CONFIG = {
     name: 'Aargonic',
-    description: 'Technology, Fintech, IoT, and Security insights from industry experts',
+    description:
+        'Technology, Fintech, IoT, and Security insights from industry experts',
     url: import.meta.env.SITE_URL || 'http://localhost:4321',
     author: 'Aargonic Team',
     defaultImage: '/images/og-image.png',

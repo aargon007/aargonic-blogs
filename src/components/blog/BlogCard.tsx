@@ -24,7 +24,10 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                     <div className="md:w-1/3">
                         <div className="aspect-video md:aspect-square md:h-full relative overflow-hidden">
                             <img
-                                src={post.featuredImage || '/images/placeholder-blog.jpg'}
+                                src={
+                                    post.featuredImage ||
+                                    '/images/placeholder-blog.jpg'
+                                }
                                 alt={post.title}
                                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                             />
@@ -34,11 +37,20 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                         <CardContent className="p-6 h-full flex flex-col justify-between">
                             <div className="space-y-4">
                                 <div className="flex items-center justify-between">
-                                    <Badge variant={categoryColors[post.category as keyof typeof categoryColors] || 'blue'}>
+                                    <Badge
+                                        variant={
+                                            categoryColors[
+                                                post.category as keyof typeof categoryColors
+                                            ] || 'blue'
+                                        }
+                                    >
                                         {post.category}
                                     </Badge>
                                     <span className="text-sm text-gray-500">
-                                        {formatDate(post.publishedAt || post.createdAt, 'short')}
+                                        {formatDate(
+                                            post.publishedAt || post.createdAt,
+                                            'short'
+                                        )}
                                     </span>
                                 </div>
 
@@ -83,7 +95,13 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                 />
                 <div className="absolute top-4 left-4">
-                    <Badge variant={categoryColors[post.category as keyof typeof categoryColors] || 'blue'}>
+                    <Badge
+                        variant={
+                            categoryColors[
+                                post.category as keyof typeof categoryColors
+                            ] || 'blue'
+                        }
+                    >
                         {post.category}
                     </Badge>
                 </div>
@@ -92,9 +110,7 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
             <CardContent className="p-6">
                 <div className="space-y-4">
                     <h3 className="text-xl font-bold text-gray-900 hover:text-blue-600 transition-colors line-clamp-2">
-                        <a href={`/blog/${post.slug}`}>
-                            {post.title}
-                        </a>
+                        <a href={`/blog/${post.slug}`}>{post.title}</a>
                     </h3>
 
                     <p className="text-gray-600 line-clamp-3">
@@ -102,7 +118,12 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                     </p>
 
                     <div className="flex items-center justify-between text-sm text-gray-500">
-                        <span>{formatDate(post.publishedAt || post.createdAt, 'short')}</span>
+                        <span>
+                            {formatDate(
+                                post.publishedAt || post.createdAt,
+                                'short'
+                            )}
+                        </span>
                         <div className="flex items-center space-x-2">
                             <span>{post.readingTime} min read</span>
                             <span>•</span>

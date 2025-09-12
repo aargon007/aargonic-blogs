@@ -35,11 +35,13 @@ const blogSchema = new Schema<Blog>(
             required: [true, 'Category is required'],
             enum: BLOG_CATEGORIES.map(cat => cat.id),
         },
-        tags: [{
-            type: String,
-            trim: true,
-            lowercase: true,
-        }],
+        tags: [
+            {
+                type: String,
+                trim: true,
+                lowercase: true,
+            },
+        ],
         author: {
             type: Schema.Types.ObjectId,
             ref: 'User',
@@ -73,13 +75,18 @@ const blogSchema = new Schema<Blog>(
             metaDescription: {
                 type: String,
                 trim: true,
-                maxlength: [160, 'Meta description must be less than 160 characters'],
+                maxlength: [
+                    160,
+                    'Meta description must be less than 160 characters',
+                ],
             },
-            keywords: [{
-                type: String,
-                trim: true,
-                lowercase: true,
-            }],
+            keywords: [
+                {
+                    type: String,
+                    trim: true,
+                    lowercase: true,
+                },
+            ],
         },
     },
     {
@@ -112,4 +119,5 @@ blogSchema.virtual('formattedReadingTime').get(function () {
     return `${minutes} min read`;
 });
 
-export const BlogModel = mongoose.models.Blog || model<Blog>('Blog', blogSchema);
+export const BlogModel =
+    mongoose.models.Blog || model<Blog>('Blog', blogSchema);

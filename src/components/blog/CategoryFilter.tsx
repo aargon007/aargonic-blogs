@@ -7,7 +7,10 @@ interface CategoryFilterProps {
     onCategoryChange: (category: string | undefined) => void;
 }
 
-export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryFilterProps) {
+export function CategoryFilter({
+    selectedCategory,
+    onCategoryChange,
+}: CategoryFilterProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleCategoryClick = (categoryId: string | undefined) => {
@@ -21,22 +24,24 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
             <div className="hidden md:flex flex-wrap gap-3">
                 <button
                     onClick={() => handleCategoryClick(undefined)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!selectedCategory
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                        !selectedCategory
                             ? 'bg-blue-600 text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
+                    }`}
                 >
                     All Categories
                 </button>
 
-                {BLOG_CATEGORIES.map((category) => (
+                {BLOG_CATEGORIES.map(category => (
                     <button
                         key={category.id}
                         onClick={() => handleCategoryClick(category.id)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category.id
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                            selectedCategory === category.id
                                 ? 'bg-blue-600 text-white'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                            }`}
+                        }`}
                     >
                         {category.name}
                     </button>
@@ -53,9 +58,10 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-gray-700">
                             {selectedCategory
-                                ? BLOG_CATEGORIES.find(cat => cat.id === selectedCategory)?.name
-                                : 'All Categories'
-                            }
+                                ? BLOG_CATEGORIES.find(
+                                      cat => cat.id === selectedCategory
+                                  )?.name
+                                : 'All Categories'}
                         </span>
                         <svg
                             className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
@@ -63,7 +69,12 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                         >
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                            />
                         </svg>
                     </div>
                 </button>
@@ -73,26 +84,40 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
                         <div className="py-1">
                             <button
                                 onClick={() => handleCategoryClick(undefined)}
-                                className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${!selectedCategory ? 'bg-blue-50 text-blue-600' : 'text-gray-700'
-                                    }`}
+                                className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${
+                                    !selectedCategory
+                                        ? 'bg-blue-50 text-blue-600'
+                                        : 'text-gray-700'
+                                }`}
                             >
                                 All Categories
                             </button>
 
-                            {BLOG_CATEGORIES.map((category) => (
+                            {BLOG_CATEGORIES.map(category => (
                                 <button
                                     key={category.id}
-                                    onClick={() => handleCategoryClick(category.id)}
-                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${selectedCategory === category.id
+                                    onClick={() =>
+                                        handleCategoryClick(category.id)
+                                    }
+                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${
+                                        selectedCategory === category.id
                                             ? 'bg-blue-50 text-blue-600'
                                             : 'text-gray-700'
-                                        }`}
+                                    }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <span>{category.name}</span>
                                         {selectedCategory === category.id && (
-                                            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+                                            <svg
+                                                className="w-4 h-4"
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                    clipRule="evenodd"
+                                                />
                                             </svg>
                                         )}
                                     </div>
@@ -105,10 +130,15 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
 
             {/* Category Legend (Desktop only) */}
             <div className="hidden lg:block mt-4">
-                <div className="text-xs text-gray-500 mb-2">Category descriptions:</div>
+                <div className="text-xs text-gray-500 mb-2">
+                    Category descriptions:
+                </div>
                 <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
-                    {BLOG_CATEGORIES.map((category) => (
-                        <div key={category.id} className="flex items-start space-x-2">
+                    {BLOG_CATEGORIES.map(category => (
+                        <div
+                            key={category.id}
+                            className="flex items-start space-x-2"
+                        >
                             <Badge
                                 variant={category.color as any}
                                 size="sm"
@@ -116,7 +146,9 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
                             >
                                 {category.name}
                             </Badge>
-                            <span className="leading-tight">{category.description}</span>
+                            <span className="leading-tight">
+                                {category.description}
+                            </span>
                         </div>
                     ))}
                 </div>

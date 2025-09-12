@@ -45,7 +45,10 @@ export function isValidBlogTitle(title: string): {
     }
 
     if (trimmedTitle.length > 100) {
-        return { isValid: false, error: 'Title must be less than 100 characters' };
+        return {
+            isValid: false,
+            error: 'Title must be less than 100 characters',
+        };
     }
 
     return { isValid: true };
@@ -63,7 +66,10 @@ export function isValidBlogContent(content: string): {
     }
 
     if (trimmedContent.length < 100) {
-        return { isValid: false, error: 'Content must be at least 100 characters' };
+        return {
+            isValid: false,
+            error: 'Content must be at least 100 characters',
+        };
     }
 
     return { isValid: true };
@@ -82,7 +88,11 @@ export function sanitizeInput(input: string): string {
 // Validate tag format
 export function isValidTag(tag: string): boolean {
     const trimmedTag = tag.trim();
-    return trimmedTag.length > 0 && trimmedTag.length <= 30 && /^[a-zA-Z0-9\s-]+$/.test(trimmedTag);
+    return (
+        trimmedTag.length > 0 &&
+        trimmedTag.length <= 30 &&
+        /^[a-zA-Z0-9\s-]+$/.test(trimmedTag)
+    );
 }
 
 // Validate array of tags

@@ -71,12 +71,14 @@ export function JsonLd({ type, data }: JsonLdProps) {
                 return {
                     '@context': 'https://schema.org',
                     '@type': 'BreadcrumbList',
-                    itemListElement: data.items.map((item: any, index: number) => ({
-                        '@type': 'ListItem',
-                        position: index + 1,
-                        name: item.name,
-                        item: item.url,
-                    })),
+                    itemListElement: data.items.map(
+                        (item: any, index: number) => ({
+                            '@type': 'ListItem',
+                            position: index + 1,
+                            name: item.name,
+                            item: item.url,
+                        })
+                    ),
                 };
 
             default:

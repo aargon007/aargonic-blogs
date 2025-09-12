@@ -2,275 +2,276 @@
 
 /* Custom CSS Variables */
 :root {
-  --color-primary: #2563eb;
-  --color-primary-dark: #1d4ed8;
-  --color-secondary: #64748b;
-  --color-accent: #f59e0b;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    sans-serif;
+    --color-primary: #2563eb;
+    --color-primary-dark: #1d4ed8;
+    --color-secondary: #64748b;
+    --color-accent: #f59e0b;
+    --font-sans:
+        'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+        sans-serif;
 }
 
 /* Base Styles */
 @layer base {
-  html {
-    font-family: var(--font-sans);
-    scroll-behavior: smooth;
-  }
+    html {
+        font-family: var(--font-sans);
+        scroll-behavior: smooth;
+    }
 
-  body {
-    @apply text-gray-900 bg-white;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    body {
+        @apply text-gray-900 bg-white;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 
-  /* Typography */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    @apply font-bold leading-tight;
-  }
+    /* Typography */
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        @apply font-bold leading-tight;
+    }
 
-  h1 {
-    @apply text-4xl lg:text-5xl;
-  }
+    h1 {
+        @apply text-4xl lg:text-5xl;
+    }
 
-  h2 {
-    @apply text-3xl lg:text-4xl;
-  }
+    h2 {
+        @apply text-3xl lg:text-4xl;
+    }
 
-  h3 {
-    @apply text-2xl lg:text-3xl;
-  }
+    h3 {
+        @apply text-2xl lg:text-3xl;
+    }
 
-  h4 {
-    @apply text-xl lg:text-2xl;
-  }
+    h4 {
+        @apply text-xl lg:text-2xl;
+    }
 
-  h5 {
-    @apply text-lg lg:text-xl;
-  }
+    h5 {
+        @apply text-lg lg:text-xl;
+    }
 
-  h6 {
-    @apply text-base lg:text-lg;
-  }
+    h6 {
+        @apply text-base lg:text-lg;
+    }
 
-  p {
-    @apply leading-relaxed;
-  }
+    p {
+        @apply leading-relaxed;
+    }
 
-  /* Links */
-  a {
-    @apply transition-colors duration-200;
-  }
+    /* Links */
+    a {
+        @apply transition-colors duration-200;
+    }
 
-  /* Focus states */
-  *:focus {
-    @apply outline-none;
-  }
+    /* Focus states */
+    *:focus {
+        @apply outline-none;
+    }
 }
 
 /* Component Styles */
 @layer components {
-  /* Container */
-  .container {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
+    /* Container */
+    .container {
+        @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+    }
 
-  /* Button variants */
-  .btn {
-    @apply inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
-  }
+    /* Button variants */
+    .btn {
+        @apply inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+    }
 
-  .btn-primary {
-    @apply bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500;
-  }
+    .btn-primary {
+        @apply bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500;
+    }
 
-  .btn-secondary {
-    @apply bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500;
-  }
+    .btn-secondary {
+        @apply bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500;
+    }
 
-  .btn-outline {
-    @apply border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 focus:ring-blue-500;
-  }
+    .btn-outline {
+        @apply border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 focus:ring-blue-500;
+    }
 
-  .btn-ghost {
-    @apply text-gray-700 hover:bg-gray-100 focus:ring-gray-500;
-  }
+    .btn-ghost {
+        @apply text-gray-700 hover:bg-gray-100 focus:ring-gray-500;
+    }
 
-  /* Card styles */
-  .card {
-    @apply bg-white rounded-lg shadow-md border border-gray-200;
-  }
+    /* Card styles */
+    .card {
+        @apply bg-white rounded-lg shadow-md border border-gray-200;
+    }
 
-  .card-hover {
-    @apply hover:shadow-lg transition-shadow duration-200;
-  }
+    .card-hover {
+        @apply hover:shadow-lg transition-shadow duration-200;
+    }
 
-  /* Form styles */
-  .form-input {
-    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
-  }
+    /* Form styles */
+    .form-input {
+        @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+    }
 
-  .form-textarea {
-    @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
-  }
+    .form-textarea {
+        @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+    }
 
-  .form-select {
-    @apply block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500;
-  }
+    .form-select {
+        @apply block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+    }
 
-  /* Badge styles */
-  .badge {
-    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
-  }
+    /* Badge styles */
+    .badge {
+        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+    }
 
-  .badge-blue {
-    @apply bg-blue-100 text-blue-800;
-  }
+    .badge-blue {
+        @apply bg-blue-100 text-blue-800;
+    }
 
-  .badge-green {
-    @apply bg-green-100 text-green-800;
-  }
+    .badge-green {
+        @apply bg-green-100 text-green-800;
+    }
 
-  .badge-purple {
-    @apply bg-purple-100 text-purple-800;
-  }
+    .badge-purple {
+        @apply bg-purple-100 text-purple-800;
+    }
 
-  .badge-red {
-    @apply bg-red-100 text-red-800;
-  }
+    .badge-red {
+        @apply bg-red-100 text-red-800;
+    }
 
-  .badge-yellow {
-    @apply bg-yellow-100 text-yellow-800;
-  }
+    .badge-yellow {
+        @apply bg-yellow-100 text-yellow-800;
+    }
 
-  .badge-indigo {
-    @apply bg-indigo-100 text-indigo-800;
-  }
+    .badge-indigo {
+        @apply bg-indigo-100 text-indigo-800;
+    }
 }
 
 /* Utility Classes */
 @layer utilities {
-  /* Text truncation */
-  .line-clamp-1 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+    /* Text truncation */
+    .line-clamp-1 {
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-  .line-clamp-2 {
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-  .line-clamp-3 {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
+    .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
 
-  /* Custom scrollbar */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 #f1f5f9;
-  }
+    /* Custom scrollbar */
+    .scrollbar-thin {
+        scrollbar-width: thin;
+        scrollbar-color: #cbd5e1 #f1f5f9;
+    }
 
-  .scrollbar-thin::-webkit-scrollbar {
-    width: 6px;
-  }
+    .scrollbar-thin::-webkit-scrollbar {
+        width: 6px;
+    }
 
-  .scrollbar-thin::-webkit-scrollbar-track {
-    background: #f1f5f9;
-  }
+    .scrollbar-thin::-webkit-scrollbar-track {
+        background: #f1f5f9;
+    }
 
-  .scrollbar-thin::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
-    border-radius: 3px;
-  }
+    .scrollbar-thin::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 3px;
+    }
 
-  /* Gradient text */
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
-  }
+    /* Gradient text */
+    .gradient-text {
+        @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+    }
 
-  /* Glass effect */
-  .glass {
-    @apply bg-white/10 backdrop-blur-md border border-white/20;
-  }
+    /* Glass effect */
+    .glass {
+        @apply bg-white/10 backdrop-blur-md border border-white/20;
+    }
 
-  /* Focus ring utility */
-  .focus-ring {
-    @apply focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
-  }
+    /* Focus ring utility */
+    .focus-ring {
+        @apply focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    }
 }
 
 /* Animations */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 @keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .animate-fade-in {
-  animation: fadeIn 0.5s ease-in-out;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .animate-slide-up {
-  animation: slideUp 0.5s ease-out;
+    animation: slideUp 0.5s ease-out;
 }
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
+    background: #c1c1c1;
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #a8a8a8;
+    background: #a8a8a8;
 }
 
 /* Dark mode support (future enhancement) */
 @media (prefers-color-scheme: dark) {
-  /* Dark mode styles can be added here */
+    /* Dark mode styles can be added here */
 }
 
 /* Print styles */
 @media print {
-  .no-print {
-    display: none;
-  }
+    .no-print {
+        display: none;
+    }
 
-  * {
-    color: black !important;
-    background: white !important;
-  }
+    * {
+        color: black !important;
+        background: white !important;
+    }
 }
