@@ -7,10 +7,7 @@ import ThemeToggle from "../ui/ThemeToggle"
 
 export function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const system =
-        typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches
-            ? "dark"
-            : "light"
+    const [theme, setTheme] = useState<"light" | "dark">("light");
 
     const navigation = [
         { name: "Home", href: "/" },
@@ -18,19 +15,11 @@ export function Header() {
         { name: "Categories", href: "/blog/categories" },
         { name: "About", href: "/about" },
         { name: "Contact", href: "/contact" },
-    ]
-
-    console.log(system);
-    
+    ];
 
     return (
         <header
-            className="backdrop-blur-md border-b transition-all duration-300"
-            style={{
-                backgroundColor: "var(--color-surface)",
-                borderColor: "var(--color-border)",
-                boxShadow: "var(--shadow-sm)",
-            }}
+            className="bg-surface border-border shadow-sm backdrop-blur-md border-b transition-all duration-300"
         >
             <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between h-20">
@@ -38,17 +27,8 @@ export function Header() {
                     <div className="flex items-center">
                         <a href="/" className="flex items-center group">
                             <img
-                                className="h-10 hidden dark:block w-auto transition-transform duration-300 group-hover:scale-105"
-                                src="/logo.png"
-                                alt={SITE_CONFIG.name}
-                                onError={(e) => {
-                                    e.currentTarget.style.display = "none"
-                                    e.currentTarget.nextElementSibling?.classList.remove("hidden")
-                                }}
-                            />
-                            <img
-                                className="h-10 dark:hidden w-auto transition-transform duration-300 group-hover:scale-105"
-                                src="/logo-dark.png"
+                                className="h-12 w-auto transition-transform duration-300 group-hover:scale-105"
+                                src={theme === "light" ? "/logo-dark.png" : "/logo.png"}
                                 alt={SITE_CONFIG.name}
                                 onError={(e) => {
                                     e.currentTarget.style.display = "none"
@@ -56,11 +36,7 @@ export function Header() {
                                 }}
                             />
                             <span
-                                className="hidden ml-3 text-2xl font-bold transition-colors duration-300"
-                                style={{
-                                    fontFamily: "var(--font-display)",
-                                    color: "var(--color-text-primary)",
-                                }}
+                                className="hidden ml-3 text-2xl text-text-primary font-display font-bold transition-colors duration-300"
                             >
                                 {SITE_CONFIG.name}
                             </span>
@@ -73,38 +49,29 @@ export function Header() {
                             <a
                                 key={item.name}
                                 href={item.href}
-                                className="px-4 py-2 text-sm font-medium rounded-xl transition-all duration-300 hover:scale-105"
-                                style={{
-                                    color: "var(--color-text-secondary)",
-                                }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.backgroundColor = "var(--color-surface-elevated)"
-                                    e.currentTarget.style.color = "var(--color-text-primary)"
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.backgroundColor = "transparent"
-                                    e.currentTarget.style.color = "var(--color-text-secondary)"
-                                }}
+                                className="px-4 py-2 bg-transparent hover:bg-surface-elevated text-text-secondary hover:text-text-primary text-sm font-medium rounded-xl transition-all duration-300 hover:scale-105"
                             >
                                 {item.name}
                             </a>
                         ))}
                         <div className="ml-4">
-                            <ThemeToggle />
+                            <ThemeToggle
+                                theme={theme}
+                                setTheme={setTheme}
+                            />
                         </div>
                     </div>
 
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center space-x-2">
-                        <ThemeToggle />
+                        <ThemeToggle
+                            theme={theme}
+                            setTheme={setTheme}
+                        />
                         <button
                             type="button"
                             onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            className="p-2 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2"
-                            style={{
-                                color: "var(--color-text-secondary)",
-                                backgroundColor: "var(--color-surface-elevated)",
-                            }}
+                            className="bg-surface-elevated text-text-secondary p-2 rounded-xl transition-all duration-300 focus:outline-none"
                             aria-expanded="false"
                         >
                             <span className="sr-only">Open main menu</span>
@@ -120,27 +87,14 @@ export function Header() {
                 {isMenuOpen && (
                     <div className="md:hidden animate-fade-in">
                         <div
-                            className="px-2 pt-2 pb-6 space-y-2 rounded-2xl mt-4 mb-4"
-                            style={{
-                                backgroundColor: "var(--color-surface-elevated)",
-                                border: "1px solid var(--color-border)",
-                            }}
+                            className="bg-surface-elevated border border-border px-2 pt-2 pb-6 space-y-2 rounded-2xl mt-4 mb-4"
                         >
                             {navigation.map((item) => (
                                 <a
                                     key={item.name}
                                     href={item.href}
-                                    className="block px-4 py-3 text-base font-medium rounded-xl transition-all duration-300"
-                                    style={{ color: "var(--color-text-secondary)" }}
+                                    className="block px-4 py-3 bg-transparent hover:bg-primary-light text-text-secondary hover:text-text-primary text-base font-medium rounded-xl transition-all duration-300"
                                     onClick={() => setIsMenuOpen(false)}
-                                    onMouseEnter={(e) => {
-                                        e.currentTarget.style.backgroundColor = "var(--color-primary-light)"
-                                        e.currentTarget.style.color = "var(--color-primary)"
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        e.currentTarget.style.backgroundColor = "transparent"
-                                        e.currentTarget.style.color = "var(--color-text-secondary)"
-                                    }}
                                 >
                                     {item.name}
                                 </a>

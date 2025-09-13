@@ -2,9 +2,13 @@
 
 import { useState, useEffect } from "react"
 
-export default function ThemeToggle() {
-    const [theme, setTheme] = useState<"light" | "dark">("light")
-    const [mounted, setMounted] = useState(false)
+type Props = {
+    theme: "light" | "dark";
+    setTheme: any
+}
+
+export default function ThemeToggle({ theme, setTheme }: Props) {
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
         setMounted(true)
@@ -12,14 +16,14 @@ export default function ThemeToggle() {
         const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
         const initialTheme = savedTheme || systemTheme
         setTheme(initialTheme)
-    }, [])
+    }, []);
 
     const toggleTheme = () => {
         const newTheme = theme === "light" ? "dark" : "light"
         setTheme(newTheme)
         document.documentElement.setAttribute("data-theme", newTheme)
         localStorage.setItem("theme", newTheme)
-    }
+    };
 
     if (!mounted) {
         return (
@@ -32,11 +36,7 @@ export default function ThemeToggle() {
     return (
         <button
             onClick={toggleTheme}
-            className="p-2 rounded-xl transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2"
-            style={{
-                backgroundColor: "var(--color-surface-elevated)",
-                color: "var(--color-text-primary)",
-            }}
+            className="cursor-pointer p-2 bg-surface-elevated text-text-primary rounded-full transition-all duration-300 focus:outline-none"
             aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
         >
             {theme === "light" ? (

@@ -24,22 +24,22 @@ export function Footer() {
     };
 
     return (
-        <footer className="bg-gray-900 text-white">
+        <footer className="bg-background border-t border-border text-text-secondary">
             <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    
                     {/* Brand */}
-                    <div className="col-span-1 md:col-span-1">
-                        <h3 className="text-lg font-bold mb-4">
+                    <div>
+                        <h3 className="text-lg font-bold text-text-primary mb-4">
                             {SITE_CONFIG.name}
                         </h3>
-                        <p className="text-gray-300 text-sm mb-4">
-                            {SITE_CONFIG.description}
-                        </p>
+                        <p className="text-sm mb-4">{SITE_CONFIG.description}</p>
+
+                        {/* Social Media */}
                         <div className="flex space-x-4">
-                            {/* Social Media Links */}
                             <a
                                 href="#"
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="text-text-secondary hover:text-text-primary transition-colors"
                                 aria-label="Twitter"
                             >
                                 <svg
@@ -52,7 +52,7 @@ export function Footer() {
                             </a>
                             <a
                                 href="#"
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="text-text-secondary hover:text-text-primary transition-colors"
                                 aria-label="LinkedIn"
                             >
                                 <svg
@@ -65,7 +65,7 @@ export function Footer() {
                             </a>
                             <a
                                 href="#"
-                                className="text-gray-400 hover:text-white transition-colors"
+                                className="text-text-secondary hover:text-text-primary transition-colors"
                                 aria-label="GitHub"
                             >
                                 <svg
@@ -81,7 +81,7 @@ export function Footer() {
 
                     {/* Company Links */}
                     <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wide mb-4">
+                        <h4 className="text-sm font-semibold uppercase tracking-wide text-text-primary mb-4">
                             Company
                         </h4>
                         <ul className="space-y-2">
@@ -89,7 +89,7 @@ export function Footer() {
                                 <li key={link.name}>
                                     <a
                                         href={link.href}
-                                        className="text-gray-300 hover:text-white text-sm transition-colors"
+                                        className="text-text-secondary hover:text-primary transition-colors text-sm"
                                     >
                                         {link.name}
                                     </a>
@@ -100,7 +100,7 @@ export function Footer() {
 
                     {/* Categories */}
                     <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wide mb-4">
+                        <h4 className="text-sm font-semibold uppercase tracking-wide text-text-primary mb-4">
                             Categories
                         </h4>
                         <ul className="space-y-2">
@@ -108,7 +108,7 @@ export function Footer() {
                                 <li key={link.name}>
                                     <a
                                         href={link.href}
-                                        className="text-gray-300 hover:text-white text-sm transition-colors"
+                                        className="text-text-secondary hover:text-primary transition-colors text-sm"
                                     >
                                         {link.name}
                                     </a>
@@ -119,7 +119,7 @@ export function Footer() {
 
                     {/* Resources */}
                     <div>
-                        <h4 className="text-sm font-semibold uppercase tracking-wide mb-4">
+                        <h4 className="text-sm font-semibold uppercase tracking-wide text-text-primary mb-4">
                             Resources
                         </h4>
                         <ul className="space-y-2">
@@ -127,7 +127,7 @@ export function Footer() {
                                 <li key={link.name}>
                                     <a
                                         href={link.href}
-                                        className="text-gray-300 hover:text-white text-sm transition-colors"
+                                        className="text-text-secondary hover:text-primary transition-colors text-sm"
                                     >
                                         {link.name}
                                     </a>
@@ -138,16 +138,13 @@ export function Footer() {
                 </div>
 
                 {/* Bottom Section */}
-                <div className="mt-8 pt-8 border-t border-gray-800">
-                    <div className="flex flex-col md:flex-row justify-between items-center">
-                        <p className="text-gray-400 text-sm">
-                            © {currentYear} {SITE_CONFIG.name}. All rights
-                            reserved.
-                        </p>
-                        <p className="text-gray-400 text-sm mt-2 md:mt-0">
-                            Built with Astro, React & Tailwind CSS
-                        </p>
-                    </div>
+                <div className="mt-8 pt-8 border-t border-border-subtle flex flex-col md:flex-row justify-between items-center">
+                    <p className="text-sm">
+                        © {currentYear} {SITE_CONFIG.name}. All rights reserved.
+                    </p>
+                    <p className="text-sm mt-2 md:mt-0">
+                        Built with Astro, React & Tailwind CSS
+                    </p>
                 </div>
             </div>
         </footer>
