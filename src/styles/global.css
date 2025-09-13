@@ -1,14 +1,77 @@
 @import 'tailwindcss';
 
-/* Custom CSS Variables */
+/* tailwind variable scheme */
+@theme {
+}
+
+/* Added elegant color palette with light/dark mode support */
 :root {
-    --color-primary: #2563eb;
-    --color-primary-dark: #1d4ed8;
-    --color-secondary: #64748b;
-    --color-accent: #f59e0b;
+    /* Light mode colors - Elegant gray and purple palette */
+    --color-background: #fefefe;
+    --color-surface: #ffffff;
+    --color-surface-elevated: #f8fafc;
+    --color-border: #e2e8f0;
+    --color-border-subtle: #f1f5f9;
+
+    --color-text-primary: #1e293b;
+    --color-text-secondary: #64748b;
+    --color-text-muted: #94a3b8;
+
+    --color-primary: #6366f1;
+    --color-primary-hover: #5855eb;
+    --color-primary-light: #e0e7ff;
+
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #7c3aed;
+    --color-accent-light: #ede9fe;
+
+    --color-success: #10b981;
+    --color-warning: #f59e0b;
+    --color-error: #ef4444;
+
+    /* Typography */
+    --font-display: 'Playfair Display', Georgia, serif;
     --font-sans:
         'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
         sans-serif;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md:
+        0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg:
+        0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl:
+        0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Dark mode colors */
+[data-theme='dark'] {
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+    --color-surface-elevated: #334155;
+    --color-border: #475569;
+    --color-border-subtle: #334155;
+
+    --color-text-primary: #f8fafc;
+    --color-text-secondary: #cbd5e1;
+    --color-text-muted: #94a3b8;
+
+    --color-primary: #818cf8;
+    --color-primary-hover: #6366f1;
+    --color-primary-light: #312e81;
+
+    --color-accent: #a78bfa;
+    --color-accent-hover: #8b5cf6;
+    --color-accent-light: #4c1d95;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md:
+        0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg:
+        0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-xl:
+        0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
 }
 
 /* Base Styles */
@@ -19,55 +82,68 @@
     }
 
     body {
-        @apply text-gray-900 bg-white;
+        background-color: var(--color-background);
+        color: var(--color-text-primary);
+        transition:
+            background-color 0.3s ease,
+            color 0.3s ease;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
 
-    /* Typography */
+    /* Updated typography with elegant font hierarchy */
     h1,
     h2,
     h3,
     h4,
     h5,
     h6 {
-        @apply font-bold leading-tight;
+        font-family: var(--font-display);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--color-text-primary);
     }
 
     h1 {
-        @apply text-4xl lg:text-5xl;
+        @apply text-4xl lg:text-6xl;
+        letter-spacing: -0.02em;
     }
 
     h2 {
-        @apply text-3xl lg:text-4xl;
+        @apply text-3xl lg:text-5xl;
+        letter-spacing: -0.01em;
     }
 
     h3 {
-        @apply text-2xl lg:text-3xl;
+        @apply text-2xl lg:text-4xl;
     }
 
     h4 {
-        @apply text-xl lg:text-2xl;
+        @apply text-xl lg:text-3xl;
     }
 
     h5 {
-        @apply text-lg lg:text-xl;
+        @apply text-lg lg:text-2xl;
     }
 
     h6 {
-        @apply text-base lg:text-lg;
+        @apply text-base lg:text-xl;
     }
 
     p {
         @apply leading-relaxed;
+        color: var(--color-text-secondary);
     }
 
-    /* Links */
     a {
-        @apply transition-colors duration-200;
+        @apply transition-all duration-300;
+        color: var(--color-primary);
     }
 
-    /* Focus states */
+    a:hover {
+        color: var(--color-primary-hover);
+    }
+
     *:focus {
         @apply outline-none;
     }
@@ -75,86 +151,151 @@
 
 /* Component Styles */
 @layer components {
-    /* Container */
     .container {
         @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
     }
 
-    /* Button variants */
+    /* Updated button styles with elegant design */
     .btn {
-        @apply inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+        @apply inline-flex items-center justify-center font-medium rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none;
+        font-family: var(--font-sans);
     }
 
     .btn-primary {
-        @apply bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500;
+        background-color: var(--color-primary);
+        color: white;
+        box-shadow: var(--shadow-md);
+    }
+
+    .btn-primary:hover {
+        background-color: var(--color-primary-hover);
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-1px);
     }
 
     .btn-secondary {
-        @apply bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500;
+        background-color: var(--color-surface);
+        color: var(--color-text-primary);
+        border: 1px solid var(--color-border);
+        box-shadow: var(--shadow-sm);
     }
 
-    .btn-outline {
-        @apply border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 focus:ring-blue-500;
+    .btn-secondary:hover {
+        background-color: var(--color-surface-elevated);
+        box-shadow: var(--shadow-md);
+        transform: translateY(-1px);
     }
 
     .btn-ghost {
-        @apply text-gray-700 hover:bg-gray-100 focus:ring-gray-500;
+        color: var(--color-text-secondary);
     }
 
-    /* Card styles */
+    .btn-ghost:hover {
+        background-color: var(--color-surface-elevated);
+        color: var(--color-text-primary);
+    }
+
+    /* Updated card styles with elegant shadows and borders */
     .card {
-        @apply bg-white rounded-lg shadow-md border border-gray-200;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
     }
 
-    .card-hover {
-        @apply hover:shadow-lg transition-shadow duration-200;
+    .card-hover:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-2px);
+        border-color: var(--color-primary);
     }
 
     /* Form styles */
     .form-input {
-        @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+        @apply block w-full px-4 py-3 rounded-xl transition-all duration-300;
+        background-color: var(--color-surface);
+        border: 1px solid var(--color-border);
+        color: var(--color-text-primary);
     }
 
-    .form-textarea {
-        @apply block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+    .form-input:focus {
+        border-color: var(--color-primary);
+        box-shadow: 0 0 0 3px var(--color-primary-light);
     }
 
-    .form-select {
-        @apply block w-full px-3 py-2 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500;
+    .form-input::placeholder {
+        color: var(--color-text-muted);
     }
 
-    /* Badge styles */
+    /* Updated badge styles with refined colors */
     .badge {
-        @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+        @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+        font-family: var(--font-sans);
     }
 
-    .badge-blue {
-        @apply bg-blue-100 text-blue-800;
+    .badge-primary {
+        background-color: var(--color-primary-light);
+        color: var(--color-primary);
     }
 
-    .badge-green {
-        @apply bg-green-100 text-green-800;
+    .badge-accent {
+        background-color: var(--color-accent-light);
+        color: var(--color-accent);
     }
 
-    .badge-purple {
-        @apply bg-purple-100 text-purple-800;
-    }
-
-    .badge-red {
-        @apply bg-red-100 text-red-800;
-    }
-
-    .badge-yellow {
-        @apply bg-yellow-100 text-yellow-800;
-    }
-
-    .badge-indigo {
-        @apply bg-indigo-100 text-indigo-800;
+    .badge-neutral {
+        background-color: var(--color-surface-elevated);
+        color: var(--color-text-secondary);
     }
 }
 
 /* Utility Classes */
 @layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .text-pretty {
+        text-wrap: pretty;
+    }
+
+    /* Added elegant gradient utilities */
+    .gradient-text {
+        background: linear-gradient(
+            135deg,
+            var(--color-primary),
+            var(--color-accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .gradient-bg {
+        background: linear-gradient(
+            135deg,
+            var(--color-primary),
+            var(--color-accent)
+        );
+    }
+
+    /* Glass effect for modern look */
+    .glass {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    [data-theme='dark'] .glass {
+        background: rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .focus-ring {
+        @apply focus:ring-2 focus:ring-offset-2;
+        --tw-ring-color: var(--color-primary);
+    }
+
     /* Text truncation */
     .line-clamp-1 {
         display: -webkit-box;
@@ -176,43 +317,20 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+}
 
-    /* Custom scrollbar */
-    .scrollbar-thin {
-        scrollbar-width: thin;
-        scrollbar-color: #cbd5e1 #f1f5f9;
+/* Added elegant animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
     }
-
-    .scrollbar-thin::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .scrollbar-thin::-webkit-scrollbar-track {
-        background: #f1f5f9;
-    }
-
-    .scrollbar-thin::-webkit-scrollbar-thumb {
-        background: #cbd5e1;
-        border-radius: 3px;
-    }
-
-    /* Gradient text */
-    .gradient-text {
-        @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
-    }
-
-    /* Glass effect */
-    .glass {
-        @apply bg-white/10 backdrop-blur-md border border-white/20;
-    }
-
-    /* Focus ring utility */
-    .focus-ring {
-        @apply focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
-/* Animations */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -222,46 +340,45 @@
     }
 }
 
-@keyframes slideUp {
+@keyframes scaleIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: scale(1);
     }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out;
 }
 
 .animate-fade-in {
     animation: fadeIn 0.5s ease-in-out;
 }
 
-.animate-slide-up {
-    animation: slideUp 0.5s ease-out;
+.animate-scale-in {
+    animation: scaleIn 0.4s ease-out;
 }
 
-/* Custom scrollbar */
+/* Updated scrollbar with theme support */
 ::-webkit-scrollbar {
     width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--color-surface);
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
+    background: var(--color-border);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
-
-/* Dark mode support (future enhancement) */
-@media (prefers-color-scheme: dark) {
-    /* Dark mode styles can be added here */
+    background: var(--color-text-muted);
 }
 
 /* Print styles */
