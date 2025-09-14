@@ -7,10 +7,20 @@ interface CardProps {
 }
 
 export function Card({ children, className = '', hover = false }: CardProps) {
-    const baseClasses = 'bg-white rounded-lg shadow-md border border-gray-200';
+    const baseClasses = `
+        bg-surface
+        rounded-lg
+        shadow-md
+        border
+        border-border
+        transition-all
+        duration-200
+    `;
+
     const hoverClasses = hover
-        ? 'hover:shadow-lg transition-shadow duration-200'
+        ? 'hover:shadow-lg hover:translate-y-[-2px]'
         : '';
+
     const classes = `${baseClasses} ${hoverClasses} ${className}`;
 
     return <div className={classes}>{children}</div>;
@@ -41,7 +51,9 @@ interface CardFooterProps {
 
 export function CardFooter({ children, className = '' }: CardFooterProps) {
     return (
-        <div className={`p-6 pt-4 border-t border-gray-100 ${className}`}>
+        <div
+            className={`p-6 pt-4 border-t border-border-subtle ${className}`}
+        >
             {children}
         </div>
     );

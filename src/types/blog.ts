@@ -2,15 +2,15 @@ import type { ObjectId } from 'mongoose';
 import type { User } from './user';
 
 export interface Blog {
-    _id: ObjectId;
+    _id: string;
     title: string;
     slug: string;
-    content: string;
     excerpt: string;
+    content: string;
     featuredImage?: string;
     category: string;
     tags: string[];
-    author: ObjectId | User;
+    author: any;//User;
     status: 'draft' | 'published' | 'archived';
     publishedAt?: Date;
     createdAt: Date;

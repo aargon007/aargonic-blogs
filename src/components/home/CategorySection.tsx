@@ -3,13 +3,13 @@ import { BLOG_CATEGORIES } from '../../lib/constants';
 
 export function CategorySection() {
     return (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-[var(--color-background)]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-12">
-                    <h2 className="text-3xl font-bold text-gray-900 mb-4">
+                    <h2 className="text-3xl font-bold text-[var(--color-text-primary)] mb-4">
                         Explore Categories
                     </h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
+                    <p className="text-[var(--color-text-secondary)] max-w-2xl mx-auto">
                         Dive deep into the topics that matter most in today's
                         technology landscape.
                     </p>
@@ -26,26 +26,32 @@ export function CategorySection() {
                                     <div className="space-y-4">
                                         {/* Category Icon */}
                                         <div
-                                            className={`w-12 h-12 rounded-lg bg-${category.color}-100 flex items-center justify-center group-hover:bg-${category.color}-200 transition-colors`}
+                                            className={`w-12 h-12 rounded-lg flex items-center justify-center transition-colors`}
+                                            style={{
+                                                backgroundColor: `var(--color-${category.color}-light)`,
+                                            }}
                                         >
                                             <CategoryIcon
                                                 category={category.id}
-                                                className={`w-6 h-6 text-${category.color}-600`}
+                                                className={`w-6 h-6`}
+                                                style={{
+                                                    color: `var(--color-${category.color})`,
+                                                }}
                                             />
                                         </div>
 
                                         {/* Category Info */}
                                         <div>
-                                            <h3 className="text-xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors mb-2">
+                                            <h3 className="text-xl font-semibold mb-2 transition-colors group-hover:text-[var(--color-primary)]">
                                                 {category.name}
                                             </h3>
-                                            <p className="text-gray-600 text-sm leading-relaxed">
+                                            <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed">
                                                 {category.description}
                                             </p>
                                         </div>
 
                                         {/* Arrow Icon */}
-                                        <div className="flex items-center text-sm font-medium text-gray-500 group-hover:text-blue-600 transition-colors">
+                                        <div className="flex items-center text-sm font-medium transition-colors group-hover:text-[var(--color-primary)]">
                                             <span>Explore articles</span>
                                             <svg
                                                 className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform"
@@ -72,18 +78,21 @@ export function CategorySection() {
     );
 }
 
-// Category Icon Component
+// Updated CategoryIcon to use theme colors
 function CategoryIcon({
     category,
     className,
+    style,
 }: {
     category: string;
     className: string;
+    style?: React.CSSProperties;
 }) {
     const icons = {
         technology: (
             <svg
                 className={className}
+                style={style}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -99,6 +108,7 @@ function CategoryIcon({
         fintech: (
             <svg
                 className={className}
+                style={style}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -114,6 +124,7 @@ function CategoryIcon({
         iot: (
             <svg
                 className={className}
+                style={style}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -129,6 +140,7 @@ function CategoryIcon({
         security: (
             <svg
                 className={className}
+                style={style}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -144,6 +156,7 @@ function CategoryIcon({
         acquisition: (
             <svg
                 className={className}
+                style={style}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -159,6 +172,7 @@ function CategoryIcon({
         ai: (
             <svg
                 className={className}
+                style={style}
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

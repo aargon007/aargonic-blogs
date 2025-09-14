@@ -14,19 +14,45 @@ export function Button({
     className = '',
     ...props
 }: ButtonProps) {
-    const baseClasses =
-        'inline-flex items-center justify-center font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none';
+    const baseClasses = `
+        inline-flex items-center justify-center
+        font-medium rounded-xl
+        transition-all duration-300
+        focus:outline-none cursor-pointer
+        disabled:opacity-50 disabled:pointer-events-none
+        font-sans
+    `;
 
-    const variantClasses = {
-        primary: 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500',
-        secondary:
-            'bg-gray-600 hover:bg-gray-700 text-white focus:ring-gray-500',
-        outline:
-            'border border-gray-300 bg-white hover:bg-gray-50 text-gray-700 focus:ring-blue-500',
-        ghost: 'text-gray-700 hover:bg-gray-100 focus:ring-gray-500',
+    const variantClasses: Record<string, string> = {
+        primary: `
+            bg-primary
+            text-white 
+            hover:bg-primary-hover
+            focus:ring-primary-light
+        `,
+        secondary: `
+            bg-surface 
+            text-text-primary
+            border border-border
+            hover:bg-surface-elevated
+            focus:ring-primary-light
+        `,
+        outline: `
+            bg-background
+            border border-border
+            text-text-primary
+            hover:bg-surface-elevated
+            focus:ring-primary-light
+        `,
+        ghost: `
+            bg-transparent
+            text-text-secondary
+            hover:bg-surface-elevated
+            focus:ring-primary-light
+        `,
     };
 
-    const sizeClasses = {
+    const sizeClasses: Record<string, string> = {
         sm: 'px-3 py-2 text-sm',
         md: 'px-4 py-2 text-sm',
         lg: 'px-6 py-3 text-base',
