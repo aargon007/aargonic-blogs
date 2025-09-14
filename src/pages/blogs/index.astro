@@ -37,7 +37,7 @@ const mockBlogData: BlogListResponse = {
           <!-- Search Bar -->
           <div class="max-w-2xl mx-auto mt-8">
             <SearchBar 
-              client:load
+               client:only="react"
               onSearch={(query) => {
                 console.log('Search query:', query);
               }}
@@ -78,7 +78,7 @@ const mockBlogData: BlogListResponse = {
                 <div class="flex flex-wrap gap-2">
                   {['AI', 'Machine Learning', 'Blockchain', 'Cybersecurity', 'IoT', 'Cloud Computing', 'DevOps', 'Data Science'].map((tag,index) => (
                     <button
-                      class="px-3 py-1 text-sm bg-surface-elevated text-text-secondary rounded-full hover:bg-primary-light hover:text-primary transition-colors"
+                      class="px-3 py-1 text-sm bg-surface-elevated text-text-secondary rounded-full hover:text-text-primary transition-colors"
                     >
                       #{tag}
                     </button>
@@ -87,8 +87,8 @@ const mockBlogData: BlogListResponse = {
               </div>
 
               <!-- Newsletter Signup -->
-              <div class="bg-primary-light rounded-lg border border-primary p-6">
-                <h3 class="text-lg font-semibold text-primary mb-2">
+              <div class="bg-primary-light/20 rounded-lg border border-primary p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-2">
                   Stay Updated
                 </h3>
                 <p class="text-primary text-sm mb-4">

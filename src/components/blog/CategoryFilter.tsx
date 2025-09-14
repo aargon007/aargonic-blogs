@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Badge } from '../ui';
 import { BLOG_CATEGORIES } from '../../lib/constants';
 
 interface CategoryFilterProps {
@@ -7,10 +6,7 @@ interface CategoryFilterProps {
     onCategoryChange: (category: string | undefined) => void;
 }
 
-export function CategoryFilter({
-    selectedCategory,
-    onCategoryChange,
-}: CategoryFilterProps) {
+export function CategoryFilter({ selectedCategory, onCategoryChange, }: CategoryFilterProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleCategoryClick = (categoryId: string | undefined) => {
@@ -24,11 +20,10 @@ export function CategoryFilter({
             <div className="hidden md:flex flex-wrap gap-3">
                 <button
                     onClick={() => handleCategoryClick(undefined)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                        !selectedCategory
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!selectedCategory
                             ? 'bg-blue-600 text-white'
                             : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                    }`}
+                        }`}
                 >
                     All Categories
                 </button>
@@ -37,11 +32,10 @@ export function CategoryFilter({
                     <button
                         key={category.id}
                         onClick={() => handleCategoryClick(category.id)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                            selectedCategory === category.id
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category.id
                                 ? 'bg-blue-600 text-white'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                        }`}
+                            }`}
                     >
                         {category.name}
                     </button>
@@ -59,8 +53,8 @@ export function CategoryFilter({
                         <span className="text-sm font-medium text-gray-700">
                             {selectedCategory
                                 ? BLOG_CATEGORIES.find(
-                                      cat => cat.id === selectedCategory
-                                  )?.name
+                                    cat => cat.id === selectedCategory
+                                )?.name
                                 : 'All Categories'}
                         </span>
                         <svg
@@ -84,11 +78,10 @@ export function CategoryFilter({
                         <div className="py-1">
                             <button
                                 onClick={() => handleCategoryClick(undefined)}
-                                className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${
-                                    !selectedCategory
+                                className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${!selectedCategory
                                         ? 'bg-blue-50 text-blue-600'
                                         : 'text-gray-700'
-                                }`}
+                                    }`}
                             >
                                 All Categories
                             </button>
@@ -99,11 +92,10 @@ export function CategoryFilter({
                                     onClick={() =>
                                         handleCategoryClick(category.id)
                                     }
-                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${
-                                        selectedCategory === category.id
+                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${selectedCategory === category.id
                                             ? 'bg-blue-50 text-blue-600'
                                             : 'text-gray-700'
-                                    }`}
+                                        }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <span>{category.name}</span>
@@ -126,32 +118,6 @@ export function CategoryFilter({
                         </div>
                     </div>
                 )}
-            </div>
-
-            {/* Category Legend (Desktop only) */}
-            <div className="hidden lg:block mt-4">
-                <div className="text-xs text-gray-500 mb-2">
-                    Category descriptions:
-                </div>
-                <div className="grid grid-cols-2 gap-2 text-xs text-gray-600">
-                    {BLOG_CATEGORIES.map(category => (
-                        <div
-                            key={category.id}
-                            className="flex items-start space-x-2"
-                        >
-                            <Badge
-                                variant={category.color as any}
-                                size="sm"
-                                className="flex-shrink-0 mt-0.5"
-                            >
-                                {category.name}
-                            </Badge>
-                            <span className="leading-tight">
-                                {category.description}
-                            </span>
-                        </div>
-                    ))}
-                </div>
             </div>
         </div>
     );

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { BlogCard } from './BlogCard';
 import { Button } from '../ui';
-import type { Blog, BlogListResponse } from '../../types/blog';
+import type { BlogListResponse } from '../../types/blog';
 
 interface BlogListProps {
     initialData: BlogListResponse;
@@ -33,13 +33,13 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
         }
     };
 
-    if (!blogs.length) {
+    if (blogs.length) {
         return (
             <div className="text-center py-16">
                 <div className="max-w-md mx-auto">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-gray-100 rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center">
                         <svg
-                            className="w-12 h-12 text-gray-400"
+                            className="w-12 h-12 text-muted-foreground"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -52,10 +52,10 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
                             />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                    <h3 className="text-xl font-semibold text-foreground mb-2">
                         No posts found
                     </h3>
-                    <p className="text-gray-600">
+                    <p className="text-muted-foreground">
                         We're working on creating amazing content for you. Check
                         back soon!
                     </p>
@@ -69,7 +69,7 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             {/* Layout Toggle */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                    <span className="text-sm text-gray-600">
+                    <span className="text-sm text-muted-foreground">
                         Showing {blogs.length} of {pagination.totalBlogs} posts
                     </span>
                 </div>
@@ -77,11 +77,10 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
                 <div className="flex items-center space-x-2">
                     <button
                         onClick={() => setCurrentLayout('grid')}
-                        className={`p-2 rounded-md transition-colors ${
-                            currentLayout === 'grid'
-                                ? 'bg-blue-100 text-blue-600'
-                                : 'text-gray-400 hover:text-gray-600'
-                        }`}
+                        className={`p-2 rounded-md transition-colors ${currentLayout === 'grid'
+                                ? 'bg-primary/10 text-primary'
+                                : 'text-muted-foreground hover:text-foreground'
+                            }`}
                         aria-label="Grid view"
                     >
                         <svg
@@ -101,11 +100,10 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
 
                     <button
                         onClick={() => setCurrentLayout('list')}
-                        className={`p-2 rounded-md transition-colors ${
-                            currentLayout === 'list'
-                                ? 'bg-blue-100 text-blue-600'
-                                : 'text-gray-400 hover:text-gray-600'
-                        }`}
+                        className={`p-2 rounded-md transition-colors ${currentLayout === 'list'
+                                ? 'bg-primary/10 text-primary'
+                                : 'text-muted-foreground hover:text-foreground'
+                            }`}
                         aria-label="List view"
                     >
                         <svg
@@ -182,7 +180,7 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             )}
 
             {/* Pagination Info */}
-            <div className="text-center text-sm text-gray-500">
+            <div className="text-center text-sm text-muted-foreground">
                 Page {pagination.currentPage} of {pagination.totalPages}
             </div>
         </div>
