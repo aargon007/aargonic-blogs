@@ -37,74 +37,94 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Main Featured Post */}
-                    <div className="lg:col-span-2">
-                        <div className="h-full bg-surface rounded-lg shadow-md border border-border transition-all duration-200 animate-fade-in-up">
-                            <div className="h-[228px] w-full relative overflow-hidden rounded-t-xl">
+                    <div className="lg:col-span-2 lg:row-span-2">
+                        <div className="h-full bg-surface border border-border transition-all duration-200 animate-fade-in-up">
+                            <div className="h-[228px] w-full relative overflow-hidden">
                                 <img
                                     src={mainPost.featuredImage || '/images/placeholder-blog.jpg'}
                                     alt={mainPost.title}
                                     className="w-full h-full transition-transform duration-300 hover:scale-105"
+                                    decoding="async"
+                                    loading="lazy"
+                                    fetchPriority="auto"
+                                    data-astro-image="constrained"
                                 />
                             </div>
 
                             <div className="pt-8">
-                                <h3 className="text-2xl lg:text-3xl font-display font-bold mb-2 hover:text-[var(--color-primary-hover)] transition-colors line-clamp-2">
-                                    <a href={`/blog/${mainPost.slug}`}>{mainPost.title}</a>
+                                <h3 className="text-2xl font-display mb-3 hover:text-text-secondary transition-colors line-clamp-2">
+                                    <a
+                                        href={`/blog/${mainPost.slug}`}
+                                        className='text-text-primary font-semibold'
+                                    >
+                                        {mainPost.title}
+                                    </a>
                                 </h3>
-                                <p className="text-[var(--color-text-secondary)] text-lg leading-relaxed mb-4">
+
+                                <p className="text-text-secondary text-base leading-relaxed mb-6">
                                     {truncateText(mainPost.excerpt || '', 150)}
                                 </p>
-                                <div className="flex items-center text-sm text-[var(--color-text-muted)] space-x-4">
+
+                                <div className="flex items-center text-sm text-text-muted space-x-4">
                                     <span>{formatDate(mainPost.publishedAt || mainPost.createdAt)}</span>
                                     <span>•</span>
                                     <span>{mainPost.readingTime} min read</span>
-                                    <span>•</span>
-                                    <span>{mainPost.views} views</span>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     {/* Side Posts */}
-                    <div className="space-y-6">
-                        {sidePosts.map((post) => (
-                            <Card key={post._id.toString()} hover className="animate-fade-in">
-                                <CardContent className="p-4">
-                                    <div className="flex space-x-4">
-                                        <div className="flex-shrink-0 w-24 h-24 overflow-hidden rounded-lg">
-                                            <img
-                                                src={post.featuredImage || '/images/placeholder-blog.jpg'}
-                                                alt={post.title}
-                                                className="w-full h-full object-cover"
-                                            />
-                                        </div>
-                                        <div className="flex-grow min-w-0">
-                                            <Badge
-                                                variant={getCategoryColor(post.category)}
-                                                size="sm"
-                                                className="mb-2"
-                                            >
-                                                {post.category}
-                                            </Badge>
-                                            <h4 className="text-lg font-semibold text-[var(--color-text-primary)] hover:text-[var(--color-primary-hover)] transition-colors line-clamp-2">
-                                                <a href={`/blog/${post.slug}`}>{post.title}</a>
-                                            </h4>
-                                            <p className="text-sm text-[var(--color-text-secondary)] line-clamp-2 mb-2">
-                                                {truncateText(post.excerpt || '', 80)}
-                                            </p>
-                                            <div className="flex items-center text-xs text-[var(--color-text-muted)] space-x-2">
-                                                <span>{formatDate(post.publishedAt || post.createdAt, 'short')}</span>
-                                                <span>•</span>
-                                                <span>{post.readingTime} min read</span>
-                                            </div>
-                                        </div>
+                    {/* <div className="space-y-6 lg:row-span-2 lg:col-span-2"> */}
+                    {sidePosts.map((post) => (
+                        <div className="lg:col-span-2 bg-surface border border-border transition-all duration-200 animate-fade-in">
+                            <div className="flex gap-x-6 w-full h-full">
+                                <div className="w-1/2 overflow-hidden bg-red-100">
+                                    <img
+                                        src={post.featuredImage || '/images/placeholder-blog.jpg'}
+                                        alt={post.title}
+                                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                                        decoding="async"
+                                        loading="lazy"
+                                        fetchPriority="auto"
+                                    />
+                                </div>
+
+                                <div className="w-1/2 min-w-0 h-full">
+                                    <div className="flex items-center text-xs text-text-muted space-x-2">
+                                        <span>{formatDate(post.publishedAt || post.createdAt, 'short')}</span>
+                                        <span>•</span>
+                                        <span>{post.readingTime} min read</span>
                                     </div>
-                                </CardContent>
-                            </Card>
-                        ))}
-                    </div>
+
+                                    <h4 className="text-lg  line-clamp-2 mt-3 mb-2">
+                                        <a
+                                            className='font-semibold text-text-primary'
+                                            href={`/blog/${post.slug}`}
+                                        >
+                                            {post.title}
+                                        </a>
+                                    </h4>
+                                    <p className="text-base font-normal text-text-secondary line-clamp-2 mb-2">
+                                        {truncateText(post.excerpt || '', 80)}
+                                    </p>
+
+                                    <Badge
+                                        variant="primary"
+                                        size="sm"
+                                        className="mb-2"
+                                    >
+                                        {post.category}
+                                    </Badge>
+                                </div>
+                            </div>
+                        </div>
+                    ))}
+                    {/* </div> */}
+
+
                 </div>
 
                 {/* View All Posts Button */}
@@ -130,19 +150,4 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
             </div>
         </section>
     );
-}
-
-// Helper function to get category color
-function getCategoryColor(
-    category: string
-): 'blue' | 'green' | 'purple' | 'red' | 'yellow' | 'indigo' | 'gray' {
-    const colorMap: Record<string, 'blue' | 'green' | 'purple' | 'red' | 'yellow' | 'indigo' | 'gray'> = {
-        technology: 'blue',
-        fintech: 'green',
-        iot: 'purple',
-        security: 'red',
-        acquisition: 'yellow',
-        ai: 'indigo',
-    };
-    return colorMap[category] || 'gray';
 }

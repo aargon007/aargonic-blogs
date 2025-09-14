@@ -2,144 +2,12 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { BlogList, CategoryFilter, SearchBar } from '../../components/blog';
 import type { BlogListResponse } from '../../types/blog';
+import { featuredPosts } from '../../constants/featuredPosts';
 
 // In a real application, you would fetch this data from your database
 // For now, we'll use placeholder data
 const mockBlogData: BlogListResponse = {
-  blogs: [
-    {
-      _id: { toString: () => '1' },
-      title: 'The Future of Fintech: How AI is Revolutionizing Financial Services',
-      slug: 'future-of-fintech-ai-revolution',
-      excerpt: 'Discover how artificial intelligence is transforming the financial industry, from automated trading to personalized banking experiences that are reshaping how we interact with money.',
-      content: 'Full article content here...',
-      featuredImage: '/images/blog/fintech-ai.jpg',
-      category: 'fintech',
-      tags: ['ai', 'machine-learning', 'banking', 'automation'],
-      author: { toString: () => 'author1' },
-      status: 'published' as const,
-      publishedAt: new Date('2024-01-15'),
-      createdAt: new Date('2024-01-15'),
-      updatedAt: new Date('2024-01-15'),
-      views: 1250,
-      readingTime: 8,
-      seo: {
-        metaTitle: 'The Future of Fintech and AI Revolution',
-        metaDescription: 'How AI is transforming financial services and what it means for the future.',
-        keywords: ['fintech', 'ai', 'artificial intelligence', 'banking']
-      }
-    },
-    {
-      _id: { toString: () => '2' },
-      title: 'IoT Security Best Practices: Protecting Your Connected Devices',
-      slug: 'iot-security-best-practices',
-      excerpt: 'Learn essential security measures to protect your IoT devices from cyber threats and data breaches. A comprehensive guide to securing your smart home and enterprise IoT infrastructure.',
-      content: 'Full article content here...',
-      featuredImage: '/images/blog/iot-security.jpg',
-      category: 'security',
-      tags: ['iot', 'cybersecurity', 'privacy', 'smart-home'],
-      author: { toString: () => 'author2' },
-      status: 'published' as const,
-      publishedAt: new Date('2024-01-12'),
-      createdAt: new Date('2024-01-12'),
-      updatedAt: new Date('2024-01-12'),
-      views: 890,
-      readingTime: 6,
-      seo: {
-        metaTitle: 'IoT Security Best Practices Guide',
-        metaDescription: 'Essential security measures for protecting IoT devices from cyber threats.',
-        keywords: ['iot', 'security', 'cybersecurity', 'best practices']
-      }
-    },
-    {
-      _id: { toString: () => '3' },
-      title: 'Tech Acquisition Trends: What to Expect in 2024',
-      slug: 'tech-acquisition-trends-2024',
-      excerpt: 'Analysis of the latest merger and acquisition trends in the technology sector. Explore key deals, valuation metrics, and market dynamics shaping the industry.',
-      content: 'Full article content here...',
-      featuredImage: '/images/blog/tech-acquisition.jpg',
-      category: 'acquisition',
-      tags: ['mergers', 'acquisitions', 'market-analysis', 'valuations'],
-      author: { toString: () => 'author3' },
-      status: 'published' as const,
-      publishedAt: new Date('2024-01-10'),
-      createdAt: new Date('2024-01-10'),
-      updatedAt: new Date('2024-01-10'),
-      views: 650,
-      readingTime: 5,
-      seo: {
-        metaTitle: 'Tech Acquisition Trends 2024',
-        metaDescription: 'Latest merger and acquisition trends in the technology sector.',
-        keywords: ['acquisition', 'mergers', 'technology', 'trends']
-      }
-    },
-    {
-      _id: { toString: () => '4' },
-      title: 'Building Scalable AI Systems: Architecture and Best Practices',
-      slug: 'building-scalable-ai-systems',
-      excerpt: 'A comprehensive guide to designing and implementing scalable artificial intelligence systems. Learn about distributed computing, model optimization, and deployment strategies.',
-      content: 'Full article content here...',
-      featuredImage: '/images/blog/ai-systems.jpg',
-      category: 'ai',
-      tags: ['ai', 'architecture', 'scalability', 'machine-learning'],
-      author: { toString: () => 'author4' },
-      status: 'published' as const,
-      publishedAt: new Date('2024-01-08'),
-      createdAt: new Date('2024-01-08'),
-      updatedAt: new Date('2024-01-08'),
-      views: 1100,
-      readingTime: 12,
-      seo: {
-        metaTitle: 'Building Scalable AI Systems',
-        metaDescription: 'Comprehensive guide to designing scalable AI systems.',
-        keywords: ['ai', 'artificial intelligence', 'architecture', 'scalability']
-      }
-    },
-    {
-      _id: { toString: () => '5' },
-      title: 'Blockchain Technology in Supply Chain Management',
-      slug: 'blockchain-supply-chain-management',
-      excerpt: 'Explore how blockchain technology is revolutionizing supply chain transparency, traceability, and efficiency across various industries.',
-      content: 'Full article content here...',
-      featuredImage: '/images/blog/blockchain-supply.jpg',
-      category: 'technology',
-      tags: ['blockchain', 'supply-chain', 'transparency', 'logistics'],
-      author: { toString: () => 'author5' },
-      status: 'published' as const,
-      publishedAt: new Date('2024-01-05'),
-      createdAt: new Date('2024-01-05'),
-      updatedAt: new Date('2024-01-05'),
-      views: 780,
-      readingTime: 7,
-      seo: {
-        metaTitle: 'Blockchain in Supply Chain Management',
-        metaDescription: 'How blockchain is revolutionizing supply chain transparency.',
-        keywords: ['blockchain', 'supply chain', 'technology', 'transparency']
-      }
-    },
-    {
-      _id: { toString: () => '6' },
-      title: 'The Rise of Edge Computing in IoT Applications',
-      slug: 'edge-computing-iot-applications',
-      excerpt: 'Understanding the importance of edge computing in IoT ecosystems, its benefits, challenges, and real-world applications across different industries.',
-      content: 'Full article content here...',
-      featuredImage: '/images/blog/edge-computing.jpg',
-      category: 'iot',
-      tags: ['edge-computing', 'iot', 'distributed-systems', 'performance'],
-      author: { toString: () => 'author6' },
-      status: 'published' as const,
-      publishedAt: new Date('2024-01-03'),
-      createdAt: new Date('2024-01-03'),
-      updatedAt: new Date('2024-01-03'),
-      views: 920,
-      readingTime: 9,
-      seo: {
-        metaTitle: 'Edge Computing in IoT Applications',
-        metaDescription: 'The importance of edge computing in IoT ecosystems.',
-        keywords: ['edge computing', 'iot', 'distributed systems', 'performance']
-      }
-    }
-  ],
+  blogs: featuredPosts,
   pagination: {
     currentPage: 1,
     totalPages: 3,
@@ -212,9 +80,9 @@ const mockBlogData: BlogListResponse = {
                   Popular Tags
                 </h3>
                 <div class="flex flex-wrap gap-2">
-                  {['AI', 'Machine Learning', 'Blockchain', 'Cybersecurity', 'IoT', 'Cloud Computing', 'DevOps', 'Data Science'].map((tag) => (
+                  {['AI', 'Machine Learning', 'Blockchain', 'Cybersecurity', 'IoT', 'Cloud Computing', 'DevOps', 'Data Science'].map((tag,index) => (
                     <button
-                      key={tag}
+                
                       class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors"
                     >
                       #{tag}
