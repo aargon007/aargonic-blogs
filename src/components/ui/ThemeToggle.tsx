@@ -34,10 +34,10 @@ export default function ThemeToggle({ theme, setTheme }: Props) {
     if (!mounted) {
         return (
             <button
-                className="p-2 rounded-xl transition-colors duration-300"
+                className="p-2 rounded-full transition-colors duration-300"
                 aria-label="Toggle theme"
             >
-                <div className="w-5 h-5 bg-gray-300 rounded animate-pulse"></div>
+                <div className="w-5 h-5 bg-surface rounded animate-pulse"></div>
             </button>
         );
     }
