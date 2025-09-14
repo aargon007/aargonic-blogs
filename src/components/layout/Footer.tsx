@@ -11,13 +11,13 @@ export function Footer() {
             { name: 'Terms of Service', href: '/terms' },
         ],
         categories: [
-            { name: 'Technology', href: '/blog/category/technology' },
-            { name: 'Fintech', href: '/blog/category/fintech' },
-            { name: 'IoT', href: '/blog/category/iot' },
-            { name: 'Security', href: '/blog/category/security' },
+            { name: 'Technology', href: '/blogs/category/technology' },
+            { name: 'Fintech', href: '/blogs/category/fintech' },
+            { name: 'IoT', href: '/blogs/category/iot' },
+            { name: 'Security', href: '/blogs/category/security' },
         ],
         resources: [
-            { name: 'All Posts', href: '/blog' },
+            { name: 'All Posts', href: '/blogs' },
             { name: 'RSS Feed', href: '/rss.xml' },
             { name: 'Sitemap', href: '/sitemap.xml' },
         ],
