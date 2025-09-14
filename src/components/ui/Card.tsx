@@ -7,15 +7,7 @@ interface CardProps {
 }
 
 export function Card({ children, className = '', hover = false }: CardProps) {
-    const baseClasses = `
-        bg-surface
-        rounded-lg
-        shadow-md
-        border
-        border-border
-        transition-all
-        duration-200
-    `;
+    const baseClasses = `bg-surface rounded-lg shadow-md border border-border transition-all duration-200`;
 
     const hoverClasses = hover
         ? 'hover:shadow-lg hover:translate-y-[-2px]'
