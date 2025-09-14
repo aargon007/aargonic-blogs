@@ -4,8 +4,6 @@ import { BlogList, CategoryFilter, SearchBar } from '../../components/blog';
 import type { BlogListResponse } from '../../types/blog';
 import { featuredPosts } from '../../constants/featuredPosts';
 
-// In a real application, you would fetch this data from your database
-// For now, we'll use placeholder data
 const mockBlogData: BlogListResponse = {
   blogs: featuredPosts,
   pagination: {
@@ -23,15 +21,15 @@ const mockBlogData: BlogListResponse = {
   description="Explore our latest insights on technology, fintech, IoT, security, AI, and acquisition trends. Stay informed with expert analysis and industry news."
   keywords={['blog', 'technology', 'fintech', 'iot', 'security', 'ai', 'acquisition', 'tech news', 'insights']}
 >
-  <div class="min-h-screen bg-gray-50">
+  <div class="min-h-screen bg-background">
     <!-- Hero Section -->
-    <section class="bg-white border-b border-gray-200">
+    <section class="bg-surface border-b border-border">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="text-center space-y-6">
-          <h1 class="text-4xl font-bold text-gray-900 sm:text-5xl">
+          <h1 class="text-4xl font-bold text-text-primary sm:text-5xl">
             Our Blog
           </h1>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p class="text-xl text-text-secondary max-w-3xl mx-auto">
             Stay ahead of the curve with insights on the latest trends in technology, 
             fintech, IoT, cybersecurity, AI, and industry acquisitions.
           </p>
@@ -41,7 +39,6 @@ const mockBlogData: BlogListResponse = {
             <SearchBar 
               client:load
               onSearch={(query) => {
-                // Handle search functionality
                 console.log('Search query:', query);
               }}
               placeholder="Search articles by title, content, or tags..."
@@ -61,29 +58,27 @@ const mockBlogData: BlogListResponse = {
             <div class="sticky top-8 space-y-8">
               
               <!-- Category Filter -->
-              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              <div class="bg-surface rounded-lg shadow-sm border border-border p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">
                   Filter by Category
                 </h3>
                 <CategoryFilter 
                   client:load
                   onCategoryChange={(category) => {
-                    // Handle category filtering
                     console.log('Selected category:', category);
                   }}
                 />
               </div>
 
               <!-- Popular Tags -->
-              <div class="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">
+              <div class="bg-surface rounded-lg shadow-sm border border-border p-6">
+                <h3 class="text-lg font-semibold text-text-primary mb-4">
                   Popular Tags
                 </h3>
                 <div class="flex flex-wrap gap-2">
                   {['AI', 'Machine Learning', 'Blockchain', 'Cybersecurity', 'IoT', 'Cloud Computing', 'DevOps', 'Data Science'].map((tag,index) => (
                     <button
-                
-                      class="px-3 py-1 text-sm bg-gray-100 text-gray-700 rounded-full hover:bg-blue-100 hover:text-blue-700 transition-colors"
+                      class="px-3 py-1 text-sm bg-surface-elevated text-text-secondary rounded-full hover:bg-primary-light hover:text-primary transition-colors"
                     >
                       #{tag}
                     </button>
@@ -92,16 +87,16 @@ const mockBlogData: BlogListResponse = {
               </div>
 
               <!-- Newsletter Signup -->
-              <div class="bg-blue-50 rounded-lg border border-blue-200 p-6">
-                <h3 class="text-lg font-semibold text-blue-900 mb-2">
+              <div class="bg-primary-light rounded-lg border border-primary p-6">
+                <h3 class="text-lg font-semibold text-primary mb-2">
                   Stay Updated
                 </h3>
-                <p class="text-blue-700 text-sm mb-4">
+                <p class="text-primary text-sm mb-4">
                   Get the latest articles delivered directly to your inbox.
                 </p>
                 <a 
                   href="/#newsletter" 
-                  class="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                  class="block w-full bg-primary text-white text-center py-2 px-4 rounded-lg hover:bg-primary-hover transition-colors font-medium"
                 >
                   Subscribe Now
                 </a>

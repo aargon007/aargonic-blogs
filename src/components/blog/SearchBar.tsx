@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 interface SearchBarProps {
@@ -14,6 +14,7 @@ export function SearchBar({
 }: SearchBarProps) {
     const [query, setQuery] = useState(initialValue);
     const [isFocused, setIsFocused] = useState(false);
+    const containerRef = useRef<HTMLFormElement>(null);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -25,15 +26,27 @@ export function SearchBar({
         onSearch('');
     };
 
+    // Close dropdown if click outside
+    const handleClickOutside = (e: MouseEvent) => {
+        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+            setIsFocused(false);
+        }
+    };
+
+    // Attach click listener to close dropdown
+    useState(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => document.removeEventListener('mousedown', handleClickOutside);
+    });
+
+    const popularTerms = ['AI', 'Fintech', 'Security', 'IoT', 'Blockchain'];
+
     return (
-        <form onSubmit={handleSubmit} className="relative">
-            <div
-                className={`relative transition-all duration-200 ${
-                    isFocused ? 'ring-2 ring-blue-500 ring-offset-2' : ''
-                }`}
-            >
+        <form ref={containerRef} onSubmit={handleSubmit} className="relative">
+            <div className="relative transition-all duration-200">
+                {/* Search icon */}
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <MagnifyingGlassIcon className="h-5 w-5 text-gray-400" />
+                    <MagnifyingGlassIcon className="h-5 w-5 text-text-secondary" />
                 </div>
 
                 <input
@@ -41,16 +54,18 @@ export function SearchBar({
                     value={query}
                     onChange={e => setQuery(e.target.value)}
                     onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
                     placeholder={placeholder}
-                    className="block w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-0 focus:border-gray-300 sm:text-sm"
+                    className="block w-full pl-10 pr-12 py-3 border border-border rounded-lg 
+                               bg-surface text-text-primary placeholder-text-secondary 
+                               focus:outline-none focus:ring-0 focus:border-border sm:text-sm"
                 />
 
                 {query && (
                     <button
                         type="button"
                         onClick={handleClear}
-                        className="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 transition-colors"
+                        className="absolute inset-y-0 right-0 pr-3 flex items-center 
+                                   text-text-secondary hover:text-text-primary transition-colors"
                     >
                         <svg
                             className="h-5 w-5"
@@ -69,29 +84,27 @@ export function SearchBar({
                 )}
             </div>
 
-            {/* Search suggestions (could be enhanced with actual search suggestions) */}
+            {/* Popular searches dropdown */}
             {isFocused && !query && (
-                <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
+                <div className="absolute z-50 w-full mt-1 bg-surface border border-border rounded-lg shadow-lg">
                     <div className="p-4">
-                        <div className="text-sm text-gray-600 mb-2">
+                        <div className="text-sm text-text-secondary mb-2">
                             Popular searches:
                         </div>
                         <div className="flex flex-wrap gap-2">
-                            {[
-                                'AI',
-                                'Fintech',
-                                'Security',
-                                'IoT',
-                                'Blockchain',
-                            ].map(term => (
+                            {popularTerms.map(term => (
                                 <button
                                     key={term}
                                     type="button"
                                     onClick={() => {
                                         setQuery(term);
                                         onSearch(term);
+                                        setIsFocused(false); // close dropdown after selecting
                                     }}
-                                    className="px-3 py-1 text-xs bg-gray-100 text-gray-700 rounded-full hover:bg-gray-200 transition-colors"
+                                    className="px-3 py-1 text-xs rounded-full 
+                                               bg-surface-elevated text-text-secondary 
+                                               hover:bg-surface-hover hover:text-text-primary 
+                                               transition-colors"
                                 >
                                     {term}
                                 </button>
