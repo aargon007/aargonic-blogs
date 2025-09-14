@@ -1,4 +1,4 @@
-import { Card, CardContent, Badge } from '../ui';
+import { Badge } from '../ui';
 import { formatDate, truncateText } from '../../utils/format';
 import type { Blog } from '../../types/blog';
 
@@ -40,7 +40,7 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                     {/* Main Featured Post */}
                     <div className="lg:col-span-2 lg:row-span-2">
-                        <div className="h-full bg-surface border border-border transition-all duration-200 animate-fade-in-up">
+                        <div className="h-full animate-fade-in-up">
                             <div className="h-[228px] w-full relative overflow-hidden">
                                 <img
                                     src={mainPost.featuredImage || '/images/placeholder-blog.jpg'}
@@ -56,7 +56,7 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                             <div className="pt-8">
                                 <h3 className="text-2xl font-display mb-3 hover:text-text-secondary transition-colors line-clamp-2">
                                     <a
-                                        href={`/blog/${mainPost.slug}`}
+                                        href={`/blogs/${mainPost.slug}`}
                                         className='text-text-primary font-semibold'
                                     >
                                         {mainPost.title}
@@ -77,11 +77,10 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                     </div>
 
                     {/* Side Posts */}
-                    {/* <div className="space-y-6 lg:row-span-2 lg:col-span-2"> */}
                     {sidePosts.map((post) => (
-                        <div className="lg:col-span-2 bg-surface border border-border transition-all duration-200 animate-fade-in">
+                        <div className="lg:col-span-2 animate-fade-in">
                             <div className="flex gap-x-6 w-full h-full">
-                                <div className="w-1/2 overflow-hidden bg-red-100">
+                                <div className="w-1/2 overflow-hidden">
                                     <img
                                         src={post.featuredImage || '/images/placeholder-blog.jpg'}
                                         alt={post.title}
@@ -102,7 +101,7 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                                     <h4 className="text-lg  line-clamp-2 mt-3 mb-2">
                                         <a
                                             className='font-semibold text-text-primary'
-                                            href={`/blog/${post.slug}`}
+                                            href={`/blogs/${post.slug}`}
                                         >
                                             {post.title}
                                         </a>
@@ -122,15 +121,12 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                             </div>
                         </div>
                     ))}
-                    {/* </div> */}
-
-
                 </div>
 
                 {/* View All Posts Button */}
                 <div className="text-center mt-12">
                     <a
-                        href="/blog"
+                        href="/blogs"
                         className="inline-flex items-center px-6 py-3 rounded-xl font-medium text-white bg-primary hover:bg-primary-hover transition-colors shadow-md hover:shadow-lg"
                     >
                         View All Articles

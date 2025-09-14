@@ -1,12 +1,15 @@
-import { useState } from 'react';
-import { BLOG_CATEGORIES } from '../../lib/constants';
+import { useState } from "react";
+import { BLOG_CATEGORIES } from "../../lib/constants";
 
 interface CategoryFilterProps {
     selectedCategory?: string;
     onCategoryChange: (category: string | undefined) => void;
 }
 
-export function CategoryFilter({ selectedCategory, onCategoryChange, }: CategoryFilterProps) {
+export function CategoryFilter({
+    selectedCategory,
+    onCategoryChange,
+}: CategoryFilterProps) {
     const [isOpen, setIsOpen] = useState(false);
 
     const handleCategoryClick = (categoryId: string | undefined) => {
@@ -21,20 +24,20 @@ export function CategoryFilter({ selectedCategory, onCategoryChange, }: Category
                 <button
                     onClick={() => handleCategoryClick(undefined)}
                     className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!selectedCategory
-                            ? 'bg-blue-600 text-white'
-                            : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                            ? "bg-primary text-white"
+                            : "bg-surface-elevated text-text-secondary hover:bg-primary-light hover:text-text-primary"
                         }`}
                 >
                     All Categories
                 </button>
 
-                {BLOG_CATEGORIES.map(category => (
+                {BLOG_CATEGORIES.map((category) => (
                     <button
                         key={category.id}
                         onClick={() => handleCategoryClick(category.id)}
                         className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category.id
-                                ? 'bg-blue-600 text-white'
-                                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                                ? "bg-primary text-white"
+                                : "bg-surface-elevated text-text-secondary hover:bg-primary-light hover:text-text-primary"
                             }`}
                     >
                         {category.name}
@@ -47,18 +50,17 @@ export function CategoryFilter({ selectedCategory, onCategoryChange, }: Category
                 <button
                     type="button"
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-full px-4 py-2 text-left bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full px-4 py-2 text-left bg-surface border border-border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary"
                 >
                     <div className="flex items-center justify-between">
-                        <span className="text-sm font-medium text-gray-700">
+                        <span className="text-sm font-medium text-text-primary">
                             {selectedCategory
-                                ? BLOG_CATEGORIES.find(
-                                    cat => cat.id === selectedCategory
-                                )?.name
-                                : 'All Categories'}
+                                ? BLOG_CATEGORIES.find((cat) => cat.id === selectedCategory)?.name
+                                : "All Categories"}
                         </span>
                         <svg
-                            className={`w-5 h-5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
+                            className={`w-5 h-5 transition-transform ${isOpen ? "rotate-180" : ""
+                                }`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -74,27 +76,25 @@ export function CategoryFilter({ selectedCategory, onCategoryChange, }: Category
                 </button>
 
                 {isOpen && (
-                    <div className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg">
+                    <div className="absolute z-50 w-full mt-1 bg-surface border border-border rounded-md shadow-lg">
                         <div className="py-1">
                             <button
                                 onClick={() => handleCategoryClick(undefined)}
-                                className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${!selectedCategory
-                                        ? 'bg-blue-50 text-blue-600'
-                                        : 'text-gray-700'
+                                className={`w-full px-4 py-2 text-left text-sm transition-colors ${!selectedCategory
+                                        ? "bg-primary-light text-primary"
+                                        : "text-text-secondary hover:bg-primary-light hover:text-text-primary"
                                     }`}
                             >
                                 All Categories
                             </button>
 
-                            {BLOG_CATEGORIES.map(category => (
+                            {BLOG_CATEGORIES.map((category) => (
                                 <button
                                     key={category.id}
-                                    onClick={() =>
-                                        handleCategoryClick(category.id)
-                                    }
-                                    className={`w-full px-4 py-2 text-left text-sm hover:bg-gray-100 ${selectedCategory === category.id
-                                            ? 'bg-blue-50 text-blue-600'
-                                            : 'text-gray-700'
+                                    onClick={() => handleCategoryClick(category.id)}
+                                    className={`w-full px-4 py-2 text-left text-sm transition-colors ${selectedCategory === category.id
+                                            ? "bg-primary-light text-primary"
+                                            : "text-text-secondary hover:bg-primary-light hover:text-text-primary"
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">

@@ -1,14 +1,14 @@
-import { useState } from 'react';
-import { BlogCard } from './BlogCard';
-import { Button } from '../ui';
-import type { BlogListResponse } from '../../types/blog';
+import { useState } from "react";
+import { BlogCard } from "./BlogCard";
+import { Button } from "../ui";
+import type { BlogListResponse } from "../../types/blog";
 
 interface BlogListProps {
     initialData: BlogListResponse;
-    layout?: 'grid' | 'list';
+    layout?: "grid" | "list";
 }
 
-export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
+export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
     const [blogs, setBlogs] = useState(initialData.blogs);
     const [pagination, setPagination] = useState(initialData.pagination);
     const [loading, setLoading] = useState(false);
@@ -24,22 +24,22 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             );
             const data: BlogListResponse = await response.json();
 
-            setBlogs(prev => [...prev, ...data.blogs]);
+            setBlogs((prev) => [...prev, ...data.blogs]);
             setPagination(data.pagination);
         } catch (error) {
-            console.error('Failed to load more posts:', error);
+            console.error("Failed to load more posts:", error);
         } finally {
             setLoading(false);
         }
     };
 
-    if (blogs.length) {
+    if (!blogs.length) {
         return (
             <div className="text-center py-16">
                 <div className="max-w-md mx-auto">
-                    <div className="w-24 h-24 mx-auto mb-6 bg-muted rounded-full flex items-center justify-center">
+                    <div className="w-24 h-24 mx-auto mb-6 bg-surface-elevated rounded-full flex items-center justify-center">
                         <svg
-                            className="w-12 h-12 text-muted-foreground"
+                            className="w-12 h-12 text-text-muted"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -52,12 +52,11 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
                             />
                         </svg>
                     </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
+                    <h3 className="text-xl font-semibold text-text-primary mb-2">
                         No posts found
                     </h3>
-                    <p className="text-muted-foreground">
-                        We're working on creating amazing content for you. Check
-                        back soon!
+                    <p className="text-text-secondary">
+                        We're working on creating amazing content for you. Check back soon!
                     </p>
                 </div>
             </div>
@@ -69,17 +68,17 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             {/* Layout Toggle */}
             <div className="flex items-center justify-between">
                 <div className="flex items-center space-x-4">
-                    <span className="text-sm text-muted-foreground">
+                    <span className="text-sm text-text-secondary">
                         Showing {blogs.length} of {pagination.totalBlogs} posts
                     </span>
                 </div>
 
                 <div className="flex items-center space-x-2">
                     <button
-                        onClick={() => setCurrentLayout('grid')}
-                        className={`p-2 rounded-md transition-colors ${currentLayout === 'grid'
-                                ? 'bg-primary/10 text-primary'
-                                : 'text-muted-foreground hover:text-foreground'
+                        onClick={() => setCurrentLayout("grid")}
+                        className={`p-2 rounded-md transition-colors ${currentLayout === "grid"
+                                ? "bg-primary-light text-primary"
+                                : "text-text-muted hover:text-text-primary"
                             }`}
                         aria-label="Grid view"
                     >
@@ -99,10 +98,10 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
                     </button>
 
                     <button
-                        onClick={() => setCurrentLayout('list')}
-                        className={`p-2 rounded-md transition-colors ${currentLayout === 'list'
-                                ? 'bg-primary/10 text-primary'
-                                : 'text-muted-foreground hover:text-foreground'
+                        onClick={() => setCurrentLayout("list")}
+                        className={`p-2 rounded-md transition-colors ${currentLayout === "list"
+                                ? "bg-primary-light text-primary"
+                                : "text-text-muted hover:text-text-primary"
                             }`}
                         aria-label="List view"
                     >
@@ -126,12 +125,12 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             {/* Blog Posts */}
             <div
                 className={
-                    currentLayout === 'grid'
-                        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
-                        : 'space-y-6'
+                    currentLayout === "grid"
+                        ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+                        : "space-y-6"
                 }
             >
-                {blogs.map(post => (
+                {blogs.map((post) => (
                     <BlogCard
                         key={post._id.toString()}
                         post={post}
@@ -143,12 +142,7 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             {/* Load More Button */}
             {pagination.hasNextPage && (
                 <div className="text-center pt-8">
-                    <Button
-                        onClick={loadMore}
-                        disabled={loading}
-                        variant="outline"
-                        size="lg"
-                    >
+                    <Button onClick={loadMore} disabled={loading} variant="outline" size="lg">
                         {loading ? (
                             <div className="flex items-center">
                                 <svg
@@ -180,7 +174,7 @@ export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
             )}
 
             {/* Pagination Info */}
-            <div className="text-center text-sm text-muted-foreground">
+            <div className="text-center text-sm text-text-secondary">
                 Page {pagination.currentPage} of {pagination.totalPages}
             </div>
         </div>
