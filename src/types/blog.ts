@@ -10,7 +10,7 @@ export interface Blog {
     featuredImage?: string;
     category: string;
     tags: string[];
-    author: any;//User;
+    author: any; //User;
     status: 'draft' | 'published' | 'archived';
     publishedAt?: Date;
     createdAt: Date;

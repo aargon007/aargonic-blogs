@@ -1,20 +1,43 @@
-import type { Blog } from "../types";
+import type { Blog } from '../types';
 
 const featuredPosts: Blog[] = [
     {
-        _id: "1",
+        _id: '1',
         title: 'The Future of Fintech: How AI is Revolutionizing Financial Services',
         slug: 'future-of-fintech-ai-revolution',
-        excerpt: 'Discover how artificial intelligence is transforming the financial industry, from automated trading to personalized banking experiences.',
-        content: 'Full article content here...',
+        excerpt:
+            'Discover how artificial intelligence is transforming the financial industry, from automated trading to personalized banking experiences.',
+        content: `
+<h2>The Current Landscape</h2>
+<p>The fintech sector is evolving rapidly with AI at the forefront. Banks and startups alike are integrating intelligent solutions to improve efficiency and customer experience.</p>
+
+<h3>Key Areas of AI Impact</h3>
+<ul>
+  <li><strong>Automated Trading:</strong> AI analyzes market trends in real-time, enabling smarter investment decisions.</li>
+  <li><strong>Risk Assessment:</strong> Machine learning enhances credit scoring accuracy for underbanked populations.</li>
+  <li><strong>Fraud Detection:</strong> AI identifies suspicious transactions and reduces false positives.</li>
+  <li><strong>Customer Service:</strong> Chatbots provide 24/7 support and personalized recommendations.</li>
+</ul>
+
+<h3>Challenges</h3>
+<ul>
+  <li>Data privacy and security concerns</li>
+  <li>Regulatory compliance requirements</li>
+  <li>Algorithmic bias</li>
+  <li>Explainability of AI decisions</li>
+</ul>
+
+<p>The future of fintech is intelligent, inclusive, and increasingly automated.</p>
+    `,
         featuredImage: '/images/posts/1.png',
         category: 'fintech',
         tags: ['ai', 'machine-learning', 'banking'],
         author: {
-            name: "XX",
-            email: "gg@gg.com"
+            name: 'Jane Doe',
+            email: 'jane.doe@example.com',
+            avatar: '/images/authors/jane.png',
         },
-        status: 'published' as const,
+        status: 'published',
         publishedAt: new Date('2024-01-15'),
         createdAt: new Date('2024-01-15'),
         updatedAt: new Date('2024-01-15'),
@@ -22,21 +45,50 @@ const featuredPosts: Blog[] = [
         readingTime: 8,
         seo: {
             metaTitle: 'The Future of Fintech and AI Revolution',
-            metaDescription: 'How AI is transforming financial services and what it means for the future.',
-            keywords: ['fintech', 'ai', 'artificial intelligence', 'banking']
-        }
+            metaDescription:
+                'How AI is transforming financial services and what it means for the future.',
+            keywords: ['fintech', 'ai', 'artificial intelligence', 'banking'],
+        },
     },
     {
-        _id: "2",
+        _id: '2',
         title: 'IoT Security Best Practices: Protecting Your Connected Devices',
         slug: 'iot-security-best-practices',
-        excerpt: 'Learn essential security measures to protect your IoT devices from cyber threats and data breaches.',
-        content: 'Full article content here...',
+        excerpt:
+            'Learn essential security measures to protect your IoT devices from cyber threats and data breaches.',
+        content: `
+<h2>Understanding IoT Risks</h2>
+<p>IoT devices are increasingly targeted by cybercriminals. Security is critical to prevent data breaches and unauthorized access.</p>
+
+<h3>Best Practices</h3>
+<ol>
+  <li>Change default passwords immediately.</li>
+  <li>Keep firmware updated.</li>
+  <li>Enable encryption for data transmission.</li>
+  <li>Monitor device network activity regularly.</li>
+</ol>
+
+<h3>Advanced Tips</h3>
+<pre><code class="language-js">
+// Example: Validate incoming device requests
+function validateRequest(req) {
+    if (!req.headers.authorization) {
+        throw new Error("Unauthorized");
+    }
+}
+</code></pre>
+
+<p>Following these steps reduces the risk of IoT vulnerabilities and enhances network security.</p>
+    `,
         featuredImage: '/images/posts/2.png',
         category: 'security',
         tags: ['iot', 'cybersecurity', 'privacy'],
-        author: { toString: () => 'author2' },
-        status: 'published' as const,
+        author: {
+            name: 'John Smith',
+            email: 'john.smith@example.com',
+            avatar: '/images/authors/john.png',
+        },
+        status: 'published',
         publishedAt: new Date('2024-01-12'),
         createdAt: new Date('2024-01-12'),
         updatedAt: new Date('2024-01-12'),
@@ -44,21 +96,39 @@ const featuredPosts: Blog[] = [
         readingTime: 6,
         seo: {
             metaTitle: 'IoT Security Best Practices Guide',
-            metaDescription: 'Essential security measures for protecting IoT devices from cyber threats.',
-            keywords: ['iot', 'security', 'cybersecurity', 'best practices']
-        }
+            metaDescription:
+                'Essential security measures for protecting IoT devices from cyber threats.',
+            keywords: ['iot', 'security', 'cybersecurity', 'best practices'],
+        },
     },
     {
-        _id: "3",
+        _id: '3',
         title: 'Tech Acquisition Trends: What to Expect in 2024',
         slug: 'tech-acquisition-trends-2024',
-        excerpt: 'Analysis of the latest merger and acquisition trends in the technology sector.',
-        content: 'Full article content here...',
+        excerpt:
+            'Analysis of the latest merger and acquisition trends in the technology sector.',
+        content: `
+<h2>Market Overview</h2>
+<p>The technology sector has seen an increase in mergers and acquisitions in 2024, driven by emerging technologies and strategic partnerships.</p>
+
+<h3>Notable Trends</h3>
+<ul>
+  <li>AI startups are increasingly being acquired by large tech firms.</li>
+  <li>Cloud service consolidation is accelerating.</li>
+  <li>Focus on cross-border acquisitions for global expansion.</li>
+</ul>
+
+<p>Understanding these trends helps investors and companies make informed decisions.</p>
+    `,
         featuredImage: '/images/posts/3.png',
         category: 'acquisition',
         tags: ['mergers', 'acquisitions', 'market-analysis'],
-        author: { toString: () => 'author3' },
-        status: 'published' as const,
+        author: {
+            name: 'Alice Johnson',
+            email: 'alice.johnson@example.com',
+            avatar: '/images/authors/alice.png',
+        },
+        status: 'published',
         publishedAt: new Date('2024-01-10'),
         createdAt: new Date('2024-01-10'),
         updatedAt: new Date('2024-01-10'),
@@ -66,61 +136,11 @@ const featuredPosts: Blog[] = [
         readingTime: 5,
         seo: {
             metaTitle: 'Tech Acquisition Trends 2024',
-            metaDescription: 'Latest merger and acquisition trends in the technology sector.',
-            keywords: ['acquisition', 'mergers', 'technology', 'trends']
-        }
+            metaDescription:
+                'Latest merger and acquisition trends in the technology sector.',
+            keywords: ['acquisition', 'mergers', 'technology', 'trends'],
+        },
     },
-    {
-        _id: "4",
-        title: 'Building Scalable AI Systems: Architecture and Best Practices',
-        slug: 'building-scalable-ai-systems',
-        excerpt: 'A comprehensive guide to designing and implementing scalable artificial intelligence systems.',
-        content: 'Full article content here...',
-        featuredImage: '/images/posts/4.png',
-        category: 'ai',
-        tags: ['ai', 'architecture', 'scalability'],
-        author: 'author4',
-        status: 'published' as const,
-        publishedAt: new Date('2024-01-08'),
-        createdAt: new Date('2024-01-08'),
-        updatedAt: new Date('2024-01-08'),
-        views: 1100,
-        readingTime: 12,
-        seo: {
-            metaTitle: 'Building Scalable AI Systems',
-            metaDescription: 'Comprehensive guide to designing scalable AI systems.',
-            keywords: ['ai', 'artificial intelligence', 'architecture', 'scalability']
-        }
-    }
 ];
 
-// Alternative image options for each category if you want to switch them:
-
-const alternativeImages = {
-    fintech: [
-        'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Banking/finance data visualization
-        'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Financial charts
-        'https://images.unsplash.com/photo-1559526324-593bc073d938?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Digital banking
-        'https://images.unsplash.com/photo-1518458028785-8fbcd101ebb9?w=800&h=600&fit=crop&crop=center&auto=format&q=80'  // Credit cards/payment
-    ],
-    security: [
-        'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Cybersecurity/network
-        'https://images.unsplash.com/photo-1563206767-5b18f218e8de?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Security lock
-        'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Digital security
-        'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?w=800&h=600&fit=crop&crop=center&auto=format&q=80'  // IoT devices
-    ],
-    acquisition: [
-        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Business meeting/handshake
-        'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Business documents
-        'https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Team meeting
-        'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center&auto=format&q=80'  // Business analytics
-    ],
-    ai: [
-        'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // AI/ML visualization
-        'https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // Neural network
-        'https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=600&fit=crop&crop=center&auto=format&q=80', // AI robot
-        'https://images.unsplash.com/photo-1507146426996-ef05306b995a?w=800&h=600&fit=crop&crop=center&auto=format&q=80'  // Technology circuit
-    ]
-};
-
-export { featuredPosts, alternativeImages };
+export { featuredPosts };

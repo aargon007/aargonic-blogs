@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
         'Technology, Fintech, IoT, AI and Security insights from industry experts',
     url: import.meta.env.SITE_URL || 'http://localhost:4321',
     author: 'Aargonic Team',
-    defaultImage: '/images/og-image.png',
+    defaultImage: 'icon.png',
 } as const;
 
 // Blog categories

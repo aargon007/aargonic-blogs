@@ -1,46 +1,60 @@
-"use client"
+'use client';
 
-import { useState, useEffect } from "react"
+import { useState, useEffect } from 'react';
 
 type Props = {
-    theme: "light" | "dark";
-    setTheme: any
-}
+    theme: 'light' | 'dark';
+    setTheme: any;
+};
 
 export default function ThemeToggle({ theme, setTheme }: Props) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true)
-        const savedTheme = localStorage.getItem("theme") as "light" | "dark" | null
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"
-        const initialTheme = savedTheme || systemTheme
-        setTheme(initialTheme)
+        setMounted(true);
+        const savedTheme = localStorage.getItem('theme') as
+            | 'light'
+            | 'dark'
+            | null;
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)')
+            .matches
+            ? 'dark'
+            : 'light';
+        const initialTheme = savedTheme || systemTheme;
+        setTheme(initialTheme);
     }, []);
 
     const toggleTheme = () => {
-        const newTheme = theme === "light" ? "dark" : "light"
-        setTheme(newTheme)
-        document.documentElement.setAttribute("data-theme", newTheme)
-        localStorage.setItem("theme", newTheme)
+        const newTheme = theme === 'light' ? 'dark' : 'light';
+        setTheme(newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
     };
 
     if (!mounted) {
         return (
-            <button className="p-2 rounded-xl transition-colors duration-300" aria-label="Toggle theme">
+            <button
+                className="p-2 rounded-xl transition-colors duration-300"
+                aria-label="Toggle theme"
+            >
                 <div className="w-5 h-5 bg-gray-300 rounded animate-pulse"></div>
             </button>
-        )
+        );
     }
 
     return (
         <button
             onClick={toggleTheme}
             className="cursor-pointer p-2 bg-surface-elevated text-text-primary rounded-full transition-all duration-300 focus:outline-none"
-            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
         >
-            {theme === "light" ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            {theme === 'light' ? (
+                <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -49,7 +63,12 @@ export default function ThemeToggle({ theme, setTheme }: Props) {
                     />
                 </svg>
             ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg
+                    className="w-5 h-5"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
                     <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
@@ -59,5 +78,5 @@ export default function ThemeToggle({ theme, setTheme }: Props) {
                 </svg>
             )}
         </button>
-    )
+    );
 }

@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { BlogCard } from "./BlogCard";
-import { Button } from "../ui";
-import type { BlogListResponse } from "../../types/blog";
+import { useState } from 'react';
+import { BlogCard } from './BlogCard';
+import { Button } from '../ui';
+import type { BlogListResponse } from '../../types/blog';
 
 interface BlogListProps {
     initialData: BlogListResponse;
-    layout?: "grid" | "list";
+    layout?: 'grid' | 'list';
 }
 
-export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
+export function BlogList({ initialData, layout = 'grid' }: BlogListProps) {
     const [blogs, setBlogs] = useState(initialData.blogs);
     const [pagination, setPagination] = useState(initialData.pagination);
     const [loading, setLoading] = useState(false);
@@ -24,10 +24,10 @@ export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
             );
             const data: BlogListResponse = await response.json();
 
-            setBlogs((prev) => [...prev, ...data.blogs]);
+            setBlogs(prev => [...prev, ...data.blogs]);
             setPagination(data.pagination);
         } catch (error) {
-            console.error("Failed to load more posts:", error);
+            console.error('Failed to load more posts:', error);
         } finally {
             setLoading(false);
         }
@@ -56,7 +56,8 @@ export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
                         No posts found
                     </h3>
                     <p className="text-text-secondary">
-                        We're working on creating amazing content for you. Check back soon!
+                        We're working on creating amazing content for you. Check
+                        back soon!
                     </p>
                 </div>
             </div>
@@ -75,11 +76,12 @@ export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
 
                 <div className="flex items-center space-x-2">
                     <button
-                        onClick={() => setCurrentLayout("grid")}
-                        className={`p-2 rounded-md transition-colors ${currentLayout === "grid"
-                                ? "bg-primary-light text-primary"
-                                : "text-text-muted hover:text-text-primary"
-                            }`}
+                        onClick={() => setCurrentLayout('grid')}
+                        className={`p-2 rounded-md transition-colors ${
+                            currentLayout === 'grid'
+                                ? 'bg-primary-light text-primary'
+                                : 'text-text-muted hover:text-text-primary'
+                        }`}
                         aria-label="Grid view"
                     >
                         <svg
@@ -98,11 +100,12 @@ export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
                     </button>
 
                     <button
-                        onClick={() => setCurrentLayout("list")}
-                        className={`p-2 rounded-md transition-colors ${currentLayout === "list"
-                                ? "bg-primary-light text-primary"
-                                : "text-text-muted hover:text-text-primary"
-                            }`}
+                        onClick={() => setCurrentLayout('list')}
+                        className={`p-2 rounded-md transition-colors ${
+                            currentLayout === 'list'
+                                ? 'bg-primary-light text-primary'
+                                : 'text-text-muted hover:text-text-primary'
+                        }`}
                         aria-label="List view"
                     >
                         <svg
@@ -125,12 +128,12 @@ export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
             {/* Blog Posts */}
             <div
                 className={
-                    currentLayout === "grid"
-                        ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-                        : "space-y-6"
+                    currentLayout === 'grid'
+                        ? 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'
+                        : 'space-y-6'
                 }
             >
-                {blogs.map((post) => (
+                {blogs.map(post => (
                     <BlogCard
                         key={post._id.toString()}
                         post={post}
@@ -142,7 +145,12 @@ export function BlogList({ initialData, layout = "grid" }: BlogListProps) {
             {/* Load More Button */}
             {pagination.hasNextPage && (
                 <div className="text-center pt-8">
-                    <Button onClick={loadMore} disabled={loading} variant="outline" size="lg">
+                    <Button
+                        onClick={loadMore}
+                        disabled={loading}
+                        variant="outline"
+                        size="lg"
+                    >
                         {loading ? (
                             <div className="flex items-center">
                                 <svg

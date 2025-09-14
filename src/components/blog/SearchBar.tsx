@@ -28,7 +28,10 @@ export function SearchBar({
 
     // Close dropdown if click outside
     const handleClickOutside = (e: MouseEvent) => {
-        if (containerRef.current && !containerRef.current.contains(e.target as Node)) {
+        if (
+            containerRef.current &&
+            !containerRef.current.contains(e.target as Node)
+        ) {
             setIsFocused(false);
         }
     };
@@ -36,7 +39,8 @@ export function SearchBar({
     // Attach click listener to close dropdown
     useState(() => {
         document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
+        return () =>
+            document.removeEventListener('mousedown', handleClickOutside);
     });
 
     const popularTerms = ['AI', 'Fintech', 'Security', 'IoT', 'Blockchain'];

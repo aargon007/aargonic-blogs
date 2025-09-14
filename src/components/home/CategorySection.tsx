@@ -35,8 +35,11 @@ export function CategorySection() {
                                 >
                                     <div className="space-y-4">
                                         {/* Category Icon */}
-                                        <div className='mt-4'>
-                                            <CategoryIcon category={category.id} className='w-6 h-6 text-text-primary' />
+                                        <div className="mt-4">
+                                            <CategoryIcon
+                                                category={category.id}
+                                                className="w-6 h-6 text-text-primary"
+                                            />
                                         </div>
 
                                         {/* Category Info */}

@@ -33,7 +33,8 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                         Featured Articles
                     </h2>
                     <p className="text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-                        Discover our latest insights and expert analysis on technology, fintech, IoT, and more.
+                        Discover our latest insights and expert analysis on
+                        technology, fintech, IoT, and more.
                     </p>
                 </div>
 
@@ -43,7 +44,10 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                         <div className="h-full animate-fade-in-up">
                             <div className="h-[228px] w-full relative overflow-hidden">
                                 <img
-                                    src={mainPost.featuredImage || '/images/placeholder-blog.jpg'}
+                                    src={
+                                        mainPost.featuredImage ||
+                                        '/images/placeholder-blog.jpg'
+                                    }
                                     alt={mainPost.title}
                                     className="w-full h-full transition-transform duration-300 hover:scale-105"
                                     decoding="async"
@@ -57,7 +61,7 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                                 <h3 className="text-2xl font-display mb-3 hover:text-text-secondary transition-colors line-clamp-2">
                                     <a
                                         href={`/blogs/${mainPost.slug}`}
-                                        className='text-text-primary font-semibold'
+                                        className="text-text-primary font-semibold"
                                     >
                                         {mainPost.title}
                                     </a>
@@ -68,7 +72,12 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                                 </p>
 
                                 <div className="flex items-center text-sm text-text-muted space-x-4">
-                                    <span>{formatDate(mainPost.publishedAt || mainPost.createdAt)}</span>
+                                    <span>
+                                        {formatDate(
+                                            mainPost.publishedAt ||
+                                                mainPost.createdAt
+                                        )}
+                                    </span>
                                     <span>•</span>
                                     <span>{mainPost.readingTime} min read</span>
                                 </div>
@@ -77,12 +86,15 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
                     </div>
 
                     {/* Side Posts */}
-                    {sidePosts.map((post) => (
+                    {sidePosts.map(post => (
                         <div className="lg:col-span-2 animate-fade-in">
                             <div className="flex gap-x-6 w-full h-full">
                                 <div className="w-1/2 overflow-hidden">
                                     <img
-                                        src={post.featuredImage || '/images/placeholder-blog.jpg'}
+                                        src={
+                                            post.featuredImage ||
+                                            '/images/placeholder-blog.jpg'
+                                        }
                                         alt={post.title}
                                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                         decoding="async"
@@ -93,14 +105,20 @@ export function FeaturedPosts({ posts }: FeaturedPostsProps) {
 
                                 <div className="w-1/2 min-w-0 h-full">
                                     <div className="flex items-center text-xs text-text-muted space-x-2">
-                                        <span>{formatDate(post.publishedAt || post.createdAt, 'short')}</span>
+                                        <span>
+                                            {formatDate(
+                                                post.publishedAt ||
+                                                    post.createdAt,
+                                                'short'
+                                            )}
+                                        </span>
                                         <span>•</span>
                                         <span>{post.readingTime} min read</span>
                                     </div>
 
                                     <h4 className="text-lg  line-clamp-2 mt-3 mb-2">
                                         <a
-                                            className='font-semibold text-text-primary'
+                                            className="font-semibold text-text-primary"
                                             href={`/blogs/${post.slug}`}
                                         >
                                             {post.title}

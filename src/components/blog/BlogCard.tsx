@@ -23,7 +23,10 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                 <div className="flex gap-x-6 w-full h-full">
                     <div className="w-1/2 h-[240px] overflow-hidden">
                         <img
-                            src={post.featuredImage || '/images/placeholder-blog.jpg'}
+                            src={
+                                post.featuredImage ||
+                                '/images/placeholder-blog.jpg'
+                            }
                             alt={post.title}
                             className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                             decoding="async"
@@ -34,14 +37,19 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
 
                     <div className="w-1/2 min-w-0 h-full">
                         <div className="flex items-center text-xs text-text-muted space-x-2">
-                            <span>{formatDate(post.publishedAt || post.createdAt, 'short')}</span>
+                            <span>
+                                {formatDate(
+                                    post.publishedAt || post.createdAt,
+                                    'short'
+                                )}
+                            </span>
                             <span>•</span>
                             <span>{post.readingTime} min read</span>
                         </div>
 
                         <h4 className="text-lg  line-clamp-2 mt-3 mb-2">
                             <a
-                                className='font-semibold text-text-primary'
+                                className="font-semibold text-text-primary"
                                 href={`/blogs/${post.slug}`}
                             >
                                 {post.title}
@@ -51,11 +59,7 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                             {truncateText(post.excerpt || '', 80)}
                         </p>
 
-                        <Badge
-                            variant="primary"
-                            size="sm"
-                            className="mb-2"
-                        >
+                        <Badge variant="primary" size="sm" className="mb-2">
                             {post.category}
                         </Badge>
                     </div>
@@ -69,7 +73,9 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
             <div className="flex flex-col gap-y-6 w-full h-full">
                 <div className="w-full h-[240px] overflow-hidden">
                     <img
-                        src={post.featuredImage || '/images/placeholder-blog.jpg'}
+                        src={
+                            post.featuredImage || '/images/placeholder-blog.jpg'
+                        }
                         alt={post.title}
                         className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                         decoding="async"
@@ -80,14 +86,19 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
 
                 <div className="w-full min-w-0">
                     <div className="flex items-center text-xs text-text-muted space-x-2">
-                        <span>{formatDate(post.publishedAt || post.createdAt, 'short')}</span>
+                        <span>
+                            {formatDate(
+                                post.publishedAt || post.createdAt,
+                                'short'
+                            )}
+                        </span>
                         <span>•</span>
                         <span>{post.readingTime} min read</span>
                     </div>
 
                     <h4 className="text-lg  line-clamp-2 mt-3 mb-2">
                         <a
-                            className='font-semibold text-text-primary'
+                            className="font-semibold text-text-primary"
                             href={`/blogs/${post.slug}`}
                         >
                             {post.title}
@@ -97,11 +108,7 @@ export function BlogCard({ post, layout = 'grid' }: BlogCardProps) {
                         {truncateText(post.excerpt || '', 80)}
                     </p>
 
-                    <Badge
-                        variant="primary"
-                        size="sm"
-                        className="mb-2"
-                    >
+                    <Badge variant="primary" size="sm" className="mb-2">
                         {post.category}
                     </Badge>
                 </div>

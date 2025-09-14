@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { BLOG_CATEGORIES } from "../../lib/constants";
+import { useState } from 'react';
+import { BLOG_CATEGORIES } from '../../lib/constants';
 
 interface CategoryFilterProps {
     selectedCategory?: string;
@@ -23,22 +23,24 @@ export function CategoryFilter({
             <div className="hidden md:flex flex-wrap gap-3">
                 <button
                     onClick={() => handleCategoryClick(undefined)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${!selectedCategory
-                            ? "bg-primary text-white"
-                            : "bg-surface-elevated text-text-secondary hover:bg-primary-light hover:text-text-primary"
-                        }`}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                        !selectedCategory
+                            ? 'bg-primary text-white'
+                            : 'bg-surface-elevated text-text-secondary hover:bg-primary-light hover:text-text-primary'
+                    }`}
                 >
                     All Categories
                 </button>
 
-                {BLOG_CATEGORIES.map((category) => (
+                {BLOG_CATEGORIES.map(category => (
                     <button
                         key={category.id}
                         onClick={() => handleCategoryClick(category.id)}
-                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category.id
-                                ? "bg-primary text-white"
-                                : "bg-surface-elevated text-text-secondary hover:bg-primary-light hover:text-text-primary"
-                            }`}
+                        className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                            selectedCategory === category.id
+                                ? 'bg-primary text-white'
+                                : 'bg-surface-elevated text-text-secondary hover:bg-primary-light hover:text-text-primary'
+                        }`}
                     >
                         {category.name}
                     </button>
@@ -55,12 +57,15 @@ export function CategoryFilter({
                     <div className="flex items-center justify-between">
                         <span className="text-sm font-medium text-text-primary">
                             {selectedCategory
-                                ? BLOG_CATEGORIES.find((cat) => cat.id === selectedCategory)?.name
-                                : "All Categories"}
+                                ? BLOG_CATEGORIES.find(
+                                      cat => cat.id === selectedCategory
+                                  )?.name
+                                : 'All Categories'}
                         </span>
                         <svg
-                            className={`w-5 h-5 transition-transform ${isOpen ? "rotate-180" : ""
-                                }`}
+                            className={`w-5 h-5 transition-transform ${
+                                isOpen ? 'rotate-180' : ''
+                            }`}
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -80,22 +85,26 @@ export function CategoryFilter({
                         <div className="py-1">
                             <button
                                 onClick={() => handleCategoryClick(undefined)}
-                                className={`w-full px-4 py-2 text-left text-sm transition-colors ${!selectedCategory
-                                        ? "bg-primary-light text-primary"
-                                        : "text-text-secondary hover:bg-primary-light hover:text-text-primary"
-                                    }`}
+                                className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                                    !selectedCategory
+                                        ? 'bg-primary-light text-primary'
+                                        : 'text-text-secondary hover:bg-primary-light hover:text-text-primary'
+                                }`}
                             >
                                 All Categories
                             </button>
 
-                            {BLOG_CATEGORIES.map((category) => (
+                            {BLOG_CATEGORIES.map(category => (
                                 <button
                                     key={category.id}
-                                    onClick={() => handleCategoryClick(category.id)}
-                                    className={`w-full px-4 py-2 text-left text-sm transition-colors ${selectedCategory === category.id
-                                            ? "bg-primary-light text-primary"
-                                            : "text-text-secondary hover:bg-primary-light hover:text-text-primary"
-                                        }`}
+                                    onClick={() =>
+                                        handleCategoryClick(category.id)
+                                    }
+                                    className={`w-full px-4 py-2 text-left text-sm transition-colors ${
+                                        selectedCategory === category.id
+                                            ? 'bg-primary-light text-primary'
+                                            : 'text-text-secondary hover:bg-primary-light hover:text-text-primary'
+                                    }`}
                                 >
                                     <div className="flex items-center justify-between">
                                         <span>{category.name}</span>

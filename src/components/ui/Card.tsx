@@ -43,9 +43,7 @@ interface CardFooterProps {
 
 export function CardFooter({ children, className = '' }: CardFooterProps) {
     return (
-        <div
-            className={`p-6 pt-4 border-t border-border-subtle ${className}`}
-        >
+        <div className={`p-6 pt-4 border-t border-border-subtle ${className}`}>
             {children}
         </div>
     );

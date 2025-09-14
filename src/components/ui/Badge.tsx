@@ -1,6 +1,12 @@
 interface BadgeProps {
     children: React.ReactNode;
-    variant?: 'primary' | 'accent' | 'success' | 'warning' | 'error' | 'neutral';
+    variant?:
+        | 'primary'
+        | 'accent'
+        | 'success'
+        | 'warning'
+        | 'error'
+        | 'neutral';
     size?: 'sm' | 'md';
     className?: string;
 }

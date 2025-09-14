@@ -1,4 +1,4 @@
-import { SITE_CONFIG } from "../../lib/constants"
+import { SITE_CONFIG } from '../../lib/constants';
 
 export function Hero() {
     return (
@@ -9,12 +9,8 @@ export function Hero() {
             }}
         >
             <div className="absolute inset-0 opacity-30">
-                <div
-                    className="absolute top-20 left-10 bg-primary w-72 h-72 rounded-full opacity-20"
-                />
-                <div
-                    className="absolute bottom-20 right-10 bg-accent w-96 h-96 rounded-full opacity-10"
-                />
+                <div className="absolute top-20 left-10 bg-primary w-72 h-72 rounded-full opacity-20" />
+                <div className="absolute bottom-20 right-10 bg-accent w-96 h-96 rounded-full opacity-10" />
             </div>
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,10 +19,14 @@ export function Hero() {
                     <div className="space-y-10 animate-fade-in-up">
                         <div className="space-y-6">
                             <h1 className="text-text-primary text-5xl lg:text-7xl font-display font-bold leading-tight text-balance">
-                                Welcome to <span className="gradient-text">{SITE_CONFIG.name}</span>
+                                Welcome to{' '}
+                                <span className="gradient-text">
+                                    {SITE_CONFIG.name}
+                                </span>
                             </h1>
                             <p className="text-text-secondary text-xl lg:text-2xl leading-relaxed text-pretty">
-                                {SITE_CONFIG.description}. Stay ahead with our expert insights and cutting-edge analysis.
+                                {SITE_CONFIG.description}. Stay ahead with our
+                                expert insights and cutting-edge analysis.
                             </p>
                         </div>
 
@@ -36,8 +36,18 @@ export function Hero() {
                                 className="btn-primary px-8 py-4 text-lg font-semibold inline-flex items-center justify-center"
                             >
                                 Explore Articles
-                                <svg className="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                <svg
+                                    className="ml-2 w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth={2}
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"
+                                    />
                                 </svg>
                             </a>
                             <a
@@ -50,9 +60,21 @@ export function Hero() {
 
                         <div className="grid grid-cols-3 gap-6 pt-12">
                             {[
-                                { value: "50+", label: "Expert Articles", color: "var(--color-primary)" },
-                                { value: "10K+", label: "Monthly Readers", color: "var(--color-success)" },
-                                { value: "6", label: "Categories", color: "var(--color-accent)" },
+                                {
+                                    value: '50+',
+                                    label: 'Expert Articles',
+                                    color: 'var(--color-primary)',
+                                },
+                                {
+                                    value: '10K+',
+                                    label: 'Monthly Readers',
+                                    color: 'var(--color-success)',
+                                },
+                                {
+                                    value: '6',
+                                    label: 'Categories',
+                                    color: 'var(--color-accent)',
+                                },
                             ].map((stat, index) => (
                                 <div
                                     key={index}
@@ -88,18 +110,27 @@ export function Hero() {
                                 src="/images/hero/technology.jpg"
                                 alt="Technology and Innovation"
                                 className="w-full h-full object-cover rounded-3xl transition-transform duration-700 hover:scale-110"
-                                onError={(e) => {
-                                    e.currentTarget.style.display = "none"
-                                    e.currentTarget.nextElementSibling?.classList.remove("hidden")
+                                onError={e => {
+                                    e.currentTarget.style.display = 'none';
+                                    e.currentTarget.nextElementSibling?.classList.remove(
+                                        'hidden'
+                                    );
                                 }}
                             />
                             <div className="w-full h-full hidden items-center justify-center text-white">
                                 <div className="text-center">
                                     <div
                                         className="w-32 h-32 mx-auto mb-6 rounded-full flex items-center justify-center"
-                                        style={{ backgroundColor: "rgba(255, 255, 255, 0.2)" }}
+                                        style={{
+                                            backgroundColor:
+                                                'rgba(255, 255, 255, 0.2)',
+                                        }}
                                     >
-                                        <svg className="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
+                                        <svg
+                                            className="w-16 h-16"
+                                            fill="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
                                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                         </svg>
                                     </div>
@@ -110,15 +141,11 @@ export function Hero() {
                             </div>
                         </div>
 
-                        <div
-                            className="absolute -top-6 -right-6 bg-accent w-32 h-32 rounded-full opacity-60 animate-pulse"
-                        ></div>
-                        <div
-                            className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full opacity-40 animate-bounce bg-success"
-                        ></div>
+                        <div className="absolute -top-6 -right-6 bg-accent w-32 h-32 rounded-full opacity-60 animate-pulse"></div>
+                        <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full opacity-40 animate-bounce bg-success"></div>
                     </div>
                 </div>
             </div>
         </section>
-    )
+    );
 }
