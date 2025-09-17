@@ -1,4 +1,8 @@
 import './ContactFormInfo.css';
+import React from 'react';
+import './ContactFormInfo.css';
+import { InputField, TextAreaField, SelectField } from '../ui';
+import { CONTACT_SUBJECTS } from '../../lib/constants';
 
 const ContactFormInfo = () => {
 
@@ -14,87 +18,41 @@ const ContactFormInfo = () => {
                             </h2>
 
                             <form className="space-y-6" action="/api/contact" method="POST">
-                                {/* Full Name */}
-                                <div className="form-field">
-                                    <label
-                                        htmlFor="fullName"
-                                        className="block text-sm font-semibold mb-2"
-                                        style={{ color: 'var(--color-text-primary)' }}
-                                    >
-                                        Full Name *
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="fullName"
-                                        name="fullName"
-                                        required
-                                        className="form-input"
-                                        placeholder="Your full name"
-                                    />
-                                </div>
+                                <InputField
+                                    id="fullName"
+                                    name="fullName"
+                                    label="Full Name"
+                                    placeholder="Your full name"
+                                    required
+                                />
 
-                                {/* Email */}
-                                <div className="form-field">
-                                    <label
-                                        htmlFor="email"
-                                        className="block text-sm font-semibold mb-2"
-                                        style={{ color: 'var(--color-text-primary)' }}
-                                    >
-                                        Email Address *
-                                    </label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        name="email"
-                                        required
-                                        className="form-input"
-                                        placeholder="your@email.com"
-                                    />
-                                </div>
+                                <InputField
+                                    id="email"
+                                    name="email"
+                                    label="Email Address"
+                                    type="email"
+                                    placeholder="your@email.com"
+                                    required
+                                    autoComplete="email"
+                                />
 
-                                {/* Subject */}
-                                <div className="form-field">
-                                    <label
-                                        htmlFor="subject"
-                                        className="block text-sm font-semibold mb-2"
-                                        style={{ color: 'var(--color-text-primary)' }}
-                                    >
-                                        Subject *
-                                    </label>
-                                    <select
-                                        id="subject"
-                                        name="subject"
-                                        required
-                                        className="form-input"
-                                    >
-                                        <option value="">Select a subject</option>
-                                        <option value="general">General Inquiry</option>
-                                        <option value="partnership">Partnership Opportunity</option>
-                                        <option value="collaboration">Content Collaboration</option>
-                                        <option value="feedback">Feedback</option>
-                                        <option value="support">Technical Support</option>
-                                        <option value="other">Other</option>
-                                    </select>
-                                </div>
+                                <SelectField
+                                    id="subject"
+                                    name="subject"
+                                    label="Subject"
+                                    options={CONTACT_SUBJECTS}
+                                    placeholder="Select a subject"
+                                    required
+                                />
 
-                                {/* Message */}
-                                <div className="form-field">
-                                    <label
-                                        htmlFor="message"
-                                        className="block text-sm font-semibold mb-2"
-                                        style={{ color: 'var(--color-text-primary)' }}
-                                    >
-                                        Message *
-                                    </label>
-                                    <textarea
-                                        id="message"
-                                        name="message"
-                                        rows={4}
-                                        required
-                                        className="form-input resize-none"
-                                        placeholder="Tell us more about your inquiry..."
-                                    ></textarea>
-                                </div>
+                                <TextAreaField
+                                    id="message"
+                                    name="message"
+                                    label="Message"
+                                    placeholder="Tell us more about your inquiry..."
+                                    rows={4}
+                                    required
+                                />
 
                                 {/* Newsletter */}
                                 <div className="form-field flex items-start space-x-3">
@@ -102,13 +60,11 @@ const ContactFormInfo = () => {
                                         type="checkbox"
                                         id="newsletter"
                                         name="newsletter"
-                                        className="mt-1 h-4 w-4 rounded focus-ring"
-                                        style={{ accentColor: 'var(--color-primary)' }}
+                                        className="mt-1 h-4 w-4 rounded focus:outline-none"
                                     />
                                     <label
                                         htmlFor="newsletter"
-                                        className="text-sm leading-6"
-                                        style={{ color: 'var(--color-text-secondary)' }}
+                                        className="text-sm leading-6 text-text-secondary"
                                     >
                                         Subscribe to our newsletter for the latest insights and
                                         updates
@@ -142,17 +98,8 @@ const ContactFormInfo = () => {
                     {/* Info Column */}
                     <div className="contact-info-container space-y-10">
                         {/* Contact Info */}
-                        <div
-                            className="info-card contact-info p-8 rounded-2xl shadow-sm"
-                            style={{
-                                backgroundColor: 'var(--color-surface)',
-                                border: '1px solid var(--color-border)',
-                            }}
-                        >
-                            <h3
-                                className="text-lg font-display font-bold mb-4"
-                                style={{ color: 'var(--color-text-primary)' }}
-                            >
+                        <div className="info-card contact-info bg-surface border border-border p-8 rounded-2xl shadow-sm">
+                            <h3 className="text-lg font-display font-bold mb-4 text-text-primary">
                                 Contact Information
                             </h3>
 
@@ -226,25 +173,18 @@ const ContactFormInfo = () => {
                                             </svg>
                                         </div>
                                         <div>
-                                            <h4
-                                                className="text-sm font-semibold mb-1"
-                                                style={{ color: 'var(--color-text-primary)' }}
-                                            >
+                                            <h4 className="text-sm font-semibold mb-1 text-text-primary">
                                                 {item.title}
                                             </h4>
                                             {item.href ? (
                                                 <a
                                                     href={item.href}
-                                                    className="text-sm hover:underline"
-                                                    style={{ color: 'var(--color-text-secondary)' }}
+                                                    className="text-sm hover:underline text-text-secondary"
                                                 >
                                                     {item.text}
                                                 </a>
                                             ) : (
-                                                <p
-                                                    style={{ color: 'var(--color-text-secondary)' }}
-                                                    className="text-sm whitespace-pre-line"
-                                                >
+                                                <p className="text-sm whitespace-pre-line text-text-secondary">
                                                     {item.text}
                                                 </p>
                                             )}
@@ -255,17 +195,8 @@ const ContactFormInfo = () => {
                         </div>
 
                         {/* Collaboration */}
-                        <div
-                            className="info-card collaboration p-8 rounded-2xl shadow-sm"
-                            style={{
-                                backgroundColor: 'var(--color-surface)',
-                                border: '1px solid var(--color-border)',
-                            }}
-                        >
-                            <h3
-                                className="text-lg font-display font-bold mb-4"
-                                style={{ color: 'var(--color-text-primary)' }}
-                            >
+                        <div className="info-card collaboration bg-surface border border-border p-8 rounded-2xl shadow-sm">
+                            <h3 className="text-lg font-display font-bold mb-4 text-text-primary">
                                 Collaboration Opportunities
                             </h3>
                             <div className="space-y-3">
@@ -283,7 +214,7 @@ const ContactFormInfo = () => {
                                             className="bullet w-2 h-2 rounded-full"
                                             style={{ backgroundColor: item.color }}
                                         ></div>
-                                        <span className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+                                        <span className="text-sm text-text-secondary">
                                             {item.text}
                                         </span>
                                     </div>
