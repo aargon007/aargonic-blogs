@@ -98,3 +98,44 @@ export const DATE_FORMAT = 'MMMM dd, yyyy';
 
 // Reading time words per minute
 export const WORDS_PER_MINUTE = 200;
+
+// Contact information
+export const CONTACT_INFO = [
+    {
+        title: 'Email',
+        text: 'hello@aargonic.com',
+        href: 'mailto:hello@aargonic.com',
+        bg: 'var(--color-primary-light)',
+        color: 'var(--color-primary)',
+    },
+    {
+        title: 'Location',
+        text: 'Global Remote Team\nServing clients worldwide',
+        bg: 'var(--color-accent-light)',
+        color: 'var(--color-accent)',
+    },
+    {
+        title: 'Response Time',
+        text: 'Within 24 hours\nduring business days',
+        bg: 'rgba(34,197,94,0.1)',
+        color: 'var(--color-success)',
+    },
+] as const;
+
+// Contact form subjects
+export const CONTACT_SUBJECTS = [
+    { value: 'general', label: 'General Inquiry' },
+    { value: 'partnership', label: 'Partnership Opportunity' },
+    { value: 'collaboration', label: 'Content Collaboration' },
+    { value: 'feedback', label: 'Feedback' },
+    { value: 'support', label: 'Technical Support' },
+    { value: 'other', label: 'Other' },
+] as const;
+
+// Contact information for display
+export const CONTACT_DISPLAY = {
+    EMAIL: 'hello@aargonic.com',
+    RESPONSE_TIME: 'Within 24 hours during business days',
+    LOCATION: 'Global Remote Team - Serving clients worldwide',
+} as const;
+

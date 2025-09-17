@@ -1,0 +1,188 @@
+/* ContactFormInfo Component Animations */
+
+/* Keyframes for animations */
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUpLarge {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeftSmall {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes iconSlide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(5px);
+    }
+}
+
+/* Main container animations */
+.contact-form-container {
+    animation: slideInLeft 0.6s ease-out;
+}
+
+.contact-info-container {
+    animation: slideInRight 0.6s ease-out 0.2s both;
+}
+
+/* Form field animations with staggered delays */
+.form-field {
+    animation: fadeInUp 0.5s ease-out both;
+}
+
+.form-field:nth-child(1) {
+    animation-delay: 0.1s;
+}
+.form-field:nth-child(2) {
+    animation-delay: 0.2s;
+}
+.form-field:nth-child(3) {
+    animation-delay: 0.3s;
+}
+.form-field:nth-child(4) {
+    animation-delay: 0.4s;
+}
+.form-field:nth-child(5) {
+    animation-delay: 0.5s;
+}
+.form-field:nth-child(6) {
+    animation-delay: 0.6s;
+}
+
+/* Info cards animations */
+.info-card {
+    animation: fadeInUpLarge 0.5s ease-out both;
+    transition: all 0.2s ease;
+}
+
+/* .info-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+} */
+
+.info-card.contact-info {
+    animation-delay: 0.3s;
+}
+
+.info-card.collaboration {
+    animation-delay: 0.4s;
+}
+
+/* Collaboration items with staggered animation */
+.collaboration-item {
+    animation: slideInLeftSmall 0.4s ease-out both;
+}
+
+.collaboration-item:nth-child(1) {
+    animation-delay: 0.5s;
+}
+.collaboration-item:nth-child(2) {
+    animation-delay: 0.6s;
+}
+.collaboration-item:nth-child(3) {
+    animation-delay: 0.7s;
+}
+.collaboration-item:nth-child(4) {
+    animation-delay: 0.8s;
+}
+
+.collaboration-item .bullet {
+    transition: transform 0.2s ease;
+}
+
+.collaboration-item:hover .bullet {
+    transform: scale(1.5);
+}
+
+/* Button animations */
+.submit-button {
+    transition: transform 0.1s ease;
+}
+
+.submit-button:hover {
+    transform: scale(1.02);
+}
+
+.submit-button:active {
+    transform: scale(0.98);
+}
+
+.submit-button .icon {
+    transition: transform 0.2s ease;
+}
+
+.submit-button:hover .icon {
+    animation: iconSlide 0.2s ease forwards;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .contact-form-container,
+    .contact-info-container {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .contact-info-container {
+        animation-delay: 0.2s;
+    }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
