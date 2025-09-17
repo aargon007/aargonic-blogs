@@ -21,6 +21,7 @@
         "astro": "^5.13.7",
         "bcryptjs": "^3.0.2",
         "dotenv": "^17.2.2",
+        "framer-motion": "^12.23.13",
         "jsonwebtoken": "^9.0.2",
         "mongoose": "^8.18.1",
         "react": "^19.1.1",

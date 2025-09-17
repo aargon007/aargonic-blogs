@@ -1,0 +1,83 @@
+---
+import ContactFormInfo from '../components/contact/ContactFormInfo';
+import ContactHero from '../components/contact/ContactHero';
+import FAQ from '../components/contact/FAQ';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE_CONFIG } from '../lib/constants';
+---
+
+<BaseLayout 
+  title="Contact Us"
+  description={`Get in touch with ${SITE_CONFIG.name} team. We'd love to hear from you about partnerships, collaborations, or any questions.`}
+  keywords={['contact', 'get in touch', 'partnerships', 'collaboration', 'support']}
+>
+
+  <ContactHero />
+
+  <!-- Contact Form & Info Section -->
+  <ContactFormInfo client:load />
+
+  <!-- FAQ Section -->
+  <FAQ client:load />
+</BaseLayout>
+
+<script>
+  // Enhanced form handling
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.querySelector('form[action="/api/contact"]');
+    
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitButton = form.querySelector('button[type="submit"]')!;
+        const originalText = submitButton.innerHTML!;
+        
+        // Show loading state
+        submitButton.innerHTML = `
+          <svg class="animate-spin -ml-1 mr-3 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+          </svg>
+          Sending...
+        `;
+        submitButton.setAttribute('disabled', 'true');
+        
+        try {
+          const formData = new FormData(form as unknown as HTMLFormElement);
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData
+          });
+          
+          if (response.ok) {
+            // Success feedback
+            submitButton.innerHTML = `
+              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M5 13l4 4L19 7" />
+              </svg>
+              Message Sent!
+            `;
+            (form as unknown as HTMLFormElement).reset();
+            
+            // Reset button after 3 seconds
+            setTimeout(() => {
+              submitButton.innerHTML = originalText;
+              submitButton.setAttribute('disabled', 'false');
+            }, 3000);
+          } else {
+            throw new Error('Failed to send message');
+          }
+        } catch (error) {
+          // Error feedback
+          submitButton.innerHTML = 'Failed to Send. Please Try Again';
+          submitButton.setAttribute('disabled', 'false'); // Button is enabled after 3 seconds
+          
+          setTimeout(() => {
+            submitButton.innerHTML = originalText;
+          }, 3000);
+        }
+      });
+    }
+  });
+</script>
