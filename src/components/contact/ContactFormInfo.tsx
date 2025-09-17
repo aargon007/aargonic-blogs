@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 
 const ContactFormInfo = () => {
     return (
@@ -6,53 +7,46 @@ const ContactFormInfo = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     {/* Contact Form */}
-                    <div className="animate-fade-in-up">
-                        <div className=" p-10">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6 }}
+                    >
+                        <div className="p-10">
                             <h2 className="text-3xl font-display font-bold mb-8 text-text-primary">
                                 Send us a Message
                             </h2>
 
                             <form className="space-y-6" action="/api/contact" method="POST">
-                                {/* Name fields */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                    <div>
-                                        <label
-                                            htmlFor="firstName"
-                                            className="block text-sm font-semibold mb-2"
-                                            style={{ color: 'var(--color-text-primary)' }}
-                                        >
-                                            First Name *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="firstName"
-                                            name="firstName"
-                                            required
-                                            className="form-input"
-                                            placeholder="Your first name"
-                                        />
-                                    </div>
-                                    <div>
-                                        <label
-                                            htmlFor="lastName"
-                                            className="block text-sm font-semibold mb-2"
-                                            style={{ color: 'var(--color-text-primary)' }}
-                                        >
-                                            Last Name *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            id="lastName"
-                                            name="lastName"
-                                            required
-                                            className="form-input"
-                                            placeholder="Your last name"
-                                        />
-                                    </div>
-                                </div>
+                                {/* Full Name */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1, duration: 0.5 }}
+                                >
+                                    <label
+                                        htmlFor="fullName"
+                                        className="block text-sm font-semibold mb-2"
+                                        style={{ color: 'var(--color-text-primary)' }}
+                                    >
+                                        Full Name *
+                                    </label>
+                                    <input
+                                        type="text"
+                                        id="fullName"
+                                        name="fullName"
+                                        required
+                                        className="form-input"
+                                        placeholder="Your full name"
+                                    />
+                                </motion.div>
 
                                 {/* Email */}
-                                <div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2, duration: 0.5 }}
+                                >
                                     <label
                                         htmlFor="email"
                                         className="block text-sm font-semibold mb-2"
@@ -68,28 +62,14 @@ const ContactFormInfo = () => {
                                         className="form-input"
                                         placeholder="your@email.com"
                                     />
-                                </div>
-
-                                {/* Company */}
-                                <div>
-                                    <label
-                                        htmlFor="company"
-                                        className="block text-sm font-semibold mb-2"
-                                        style={{ color: 'var(--color-text-primary)' }}
-                                    >
-                                        Company / Organization
-                                    </label>
-                                    <input
-                                        type="text"
-                                        id="company"
-                                        name="company"
-                                        className="form-input"
-                                        placeholder="Your company name"
-                                    />
-                                </div>
+                                </motion.div>
 
                                 {/* Subject */}
-                                <div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3, duration: 0.5 }}
+                                >
                                     <label
                                         htmlFor="subject"
                                         className="block text-sm font-semibold mb-2"
@@ -111,10 +91,14 @@ const ContactFormInfo = () => {
                                         <option value="support">Technical Support</option>
                                         <option value="other">Other</option>
                                     </select>
-                                </div>
+                                </motion.div>
 
                                 {/* Message */}
-                                <div>
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4, duration: 0.5 }}
+                                >
                                     <label
                                         htmlFor="message"
                                         className="block text-sm font-semibold mb-2"
@@ -130,10 +114,15 @@ const ContactFormInfo = () => {
                                         className="form-input resize-none"
                                         placeholder="Tell us more about your inquiry..."
                                     ></textarea>
-                                </div>
+                                </motion.div>
 
                                 {/* Newsletter */}
-                                <div className="flex items-start space-x-3">
+                                <motion.div
+                                    className="flex items-start space-x-3"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.5, duration: 0.5 }}
+                                >
                                     <input
                                         type="checkbox"
                                         id="newsletter"
@@ -149,19 +138,26 @@ const ContactFormInfo = () => {
                                         Subscribe to our newsletter for the latest insights and
                                         updates
                                     </label>
-                                </div>
+                                </motion.div>
 
                                 {/* Submit */}
-                                <button
+                                <motion.button
                                     type="submit"
                                     className="btn-primary w-full px-8 py-4 text-lg font-semibold inline-flex items-center justify-center group rounded-lg shadow-sm"
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.6, duration: 0.5 }}
+                                    whileHover={{ scale: 1.02 }}
+                                    whileTap={{ scale: 0.98 }}
                                 >
                                     Send Message
-                                    <svg
-                                        className="ml-2 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                                    <motion.svg
+                                        className="ml-2 w-5 h-5"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
+                                        whileHover={{ x: 5 }}
+                                        transition={{ duration: 0.2 }}
                                     >
                                         <path
                                             strokeLinecap="round"
@@ -169,20 +165,33 @@ const ContactFormInfo = () => {
                                             strokeWidth={2}
                                             d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
                                         />
-                                    </svg>
-                                </button>
+                                    </motion.svg>
+                                </motion.button>
                             </form>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Info Column */}
-                    <div className="space-y-10 animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                    <motion.div
+                        className="space-y-10"
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                    >
                         {/* Contact Info */}
-                        <div
-                            className="card p-8 rounded-2xl shadow-sm"
+                        <motion.div
+                            className="p-8 rounded-2xl shadow-sm"
                             style={{
                                 backgroundColor: 'var(--color-surface)',
                                 border: '1px solid var(--color-border)',
+                            }}
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.3, duration: 0.5 }}
+                            whileHover={{
+                                scale: 1.02,
+                                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                                transition: { duration: 0.2 }
                             }}
                         >
                             <h3
@@ -288,56 +297,22 @@ const ContactFormInfo = () => {
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        </motion.div>
 
-                        {/* Social Links */}
-                        <div
-                            className="card p-8 rounded-2xl shadow-sm"
+                        {/* Collaboration */}
+                        <motion.div
+                            className="p-8 rounded-2xl shadow-sm"
                             style={{
                                 backgroundColor: 'var(--color-surface)',
                                 border: '1px solid var(--color-border)',
                             }}
-                        >
-                            <h3
-                                className="text-2xl font-display font-bold mb-6"
-                                style={{ color: 'var(--color-text-primary)' }}
-                            >
-                                Follow Us
-                            </h3>
-                            <div className="grid grid-cols-2 gap-4">
-                                {[
-                                    { name: 'Twitter', icon: '𝕏', href: '#', color: 'var(--color-text-primary)' },
-                                    { name: 'LinkedIn', icon: '💼', href: '#', color: 'var(--color-primary)' },
-                                    { name: 'GitHub', icon: '⚡', href: '#', color: 'var(--color-text-primary)' },
-                                    { name: 'Medium', icon: '📝', href: '#', color: 'var(--color-success)' },
-                                ].map((social, index) => (
-                                    <a
-                                        key={index}
-                                        href={social.href}
-                                        className="flex items-center space-x-3 p-3 rounded-xl transition-all duration-300 hover:scale-105 group"
-                                        style={{
-                                            backgroundColor: 'var(--color-surface-elevated)',
-                                            border: '1px solid var(--color-border-subtle)',
-                                        }}
-                                    >
-                                        <span className="text-xl">{social.icon}</span>
-                                        <span
-                                            className="font-medium group-hover:underline"
-                                            style={{ color: 'var(--color-text-secondary)' }}
-                                        >
-                                            {social.name}
-                                        </span>
-                                    </a>
-                                ))}
-                            </div>
-                        </div>
-
-                        {/* Collaboration */}
-                        <div
-                            className="card p-8 rounded-2xl shadow-sm"
-                            style={{
-                                backgroundColor: 'var(--color-surface)',
-                                border: '1px solid var(--color-border)',
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.4, duration: 0.5 }}
+                            whileHover={{
+                                scale: 1.02,
+                                boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
+                                transition: { duration: 0.2 }
                             }}
                         >
                             <h3
@@ -353,22 +328,30 @@ const ContactFormInfo = () => {
                                     { color: 'var(--color-success)', text: 'Speaking engagements and conferences' },
                                     { color: 'var(--color-warning)', text: 'Media interviews and expert commentary' },
                                 ].map((item, idx) => (
-                                    <div key={idx} className="flex items-center space-x-3">
-                                        <div
+                                    <motion.div
+                                        key={idx}
+                                        className="flex items-center space-x-3"
+                                        initial={{ opacity: 0, x: -20 }}
+                                        animate={{ opacity: 1, x: 0 }}
+                                        transition={{ delay: 0.5 + idx * 0.1, duration: 0.4 }}
+                                    >
+                                        <motion.div
                                             className="w-2 h-2 rounded-full"
                                             style={{ backgroundColor: item.color }}
-                                        ></div>
+                                            whileHover={{ scale: 1.5 }}
+                                            transition={{ duration: 0.2 }}
+                                        ></motion.div>
                                         <span style={{ color: 'var(--color-text-secondary)' }}>
                                             {item.text}
                                         </span>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </div>
-        </section>
+        </section >
     );
 };
 
