@@ -8,7 +8,7 @@ const ContactFormInfo = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                     {/* Contact Form */}
                     <div className="contact-form-container">
-                        <div className="p-10">
+                        <div className="px-10 pb-10 pt-0">
                             <h2 className="text-3xl font-display font-bold mb-8 text-text-primary">
                                 Send us a Message
                             </h2>
@@ -89,7 +89,7 @@ const ContactFormInfo = () => {
                                     <textarea
                                         id="message"
                                         name="message"
-                                        rows={6}
+                                        rows={4}
                                         required
                                         className="form-input resize-none"
                                         placeholder="Tell us more about your inquiry..."
