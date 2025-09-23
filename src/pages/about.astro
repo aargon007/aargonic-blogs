@@ -1,6 +1,10 @@
 ---
+import AboutHero from '../components/about/AboutHero';
+import ExpertiseAreas from '../components/about/ExpertiseAreas';
+import StorySection from '../components/about/StorySection';
+import Values from '../components/about/Values';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { SITE_CONFIG, BLOG_CATEGORIES } from '../lib/constants';
+import { SITE_CONFIG } from '../lib/constants';
 ---
 
 <BaseLayout 
@@ -9,211 +13,17 @@ import { SITE_CONFIG, BLOG_CATEGORIES } from '../lib/constants';
   keywords={['about', 'technology experts', 'fintech', 'iot', 'ai', 'security', 'innovation']}
 >
   <!-- Hero Section -->
-  <section
-    class="relative py-24 overflow-hidden"
-    style={{
-      background: `linear-gradient(135deg, var(--color-background) 0%, var(--color-surface-elevated) 50%, var(--color-primary-light) 100%)`,
-    }}
-  >
-    <div class="absolute inset-0 opacity-20">
-      <div class="absolute top-16 left-16 w-64 h-64 rounded-full" style="background-color: var(--color-primary); opacity: 0.3;" />
-      <div class="absolute bottom-16 right-16 w-80 h-80 rounded-full" style="background-color: var(--color-accent); opacity: 0.2;" />
-    </div>
-
-    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-4xl mx-auto animate-fade-in-up">
-        <h1 class="text-5xl lg:text-7xl font-display font-bold leading-tight mb-8 text-balance" style="color: var(--color-text-primary);">
-          About <span class="gradient-text">{SITE_CONFIG.name}</span>
-        </h1>
-        <p class="text-xl lg:text-2xl leading-relaxed mb-12 text-pretty" style="color: var(--color-text-secondary);">
-          We are passionate technology experts dedicated to bringing you cutting-edge insights, 
-          in-depth analysis, and innovative solutions across the digital landscape.
-        </p>
-        <div class="flex justify-center">
-          <div class="bg-surface border border-border rounded-2xl p-8 shadow-lg max-w-md">
-            <div class="text-4xl mb-4">🚀</div>
-            <h3 class="text-2xl font-display font-bold mb-2" style="color: var(--color-text-primary);">Our Mission</h3>
-            <p style="color: var(--color-text-secondary);">
-              Empowering individuals and businesses with expert knowledge and innovative solutions
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <AboutHero/>
 
   <!-- Story Section -->
-  <section class="py-20" style="background-color: var(--color-background);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-        <div class="space-y-8 animate-fade-in-up">
-          <h2 class="text-4xl lg:text-5xl font-display font-bold" style="color: var(--color-text-primary);">
-            Our Story
-          </h2>
-          <div class="space-y-6 text-lg leading-relaxed" style="color: var(--color-text-secondary);">
-            <p>
-              Founded with a vision to bridge the gap between complex technology and practical understanding, 
-              {SITE_CONFIG.name} has become a trusted source for industry insights and expert analysis.
-            </p>
-            <p>
-              Our team of experienced professionals brings decades of combined expertise in technology, 
-              financial technology, IoT, artificial intelligence, and cybersecurity. We believe in making 
-              complex topics accessible without compromising depth or accuracy.
-            </p>
-            <p>
-              From startup innovations to enterprise solutions, we cover the full spectrum of technological 
-              advancement, helping our readers stay ahead in an ever-evolving digital world.
-            </p>
-          </div>
-        </div>
-        
-        <div class="relative animate-fade-in">
-          <div class="aspect-square rounded-3xl overflow-hidden shadow-xl" style="background: linear-gradient(135deg, var(--color-primary), var(--color-accent));">
-            <img
-              src="/images/about/team-collaboration.jpg"
-              alt="Team collaboration and innovation"
-              class="w-full h-full object-cover transition-transform duration-700 hover:scale-110"
-              onError="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-            />
-            <div class="w-full h-full hidden items-center justify-center text-white">
-              <div class="text-center">
-                <div class="w-32 h-32 mx-auto mb-6 rounded-full flex items-center justify-center" style="background-color: rgba(255, 255, 255, 0.2);">
-                  <svg class="w-16 h-16" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  </svg>
-                </div>
-                <p class="text-2xl font-display font-bold">Excellence in Innovation</p>
-              </div>
-            </div>
-          </div>
-          <div class="absolute -top-6 -right-6 w-32 h-32 rounded-full animate-pulse" style="background-color: var(--color-accent); opacity: 0.6;" />
-          <div class="absolute -bottom-6 -left-6 w-24 h-24 rounded-full animate-bounce" style="background-color: var(--color-success); opacity: 0.4;" />
-        </div>
-      </div>
-    </div>
-  </section>
+  <StorySection/>
 
   <!-- Expertise Areas -->
-  <section class="py-20" style="background-color: var(--color-surface-elevated);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-fade-in-up">
-        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-8" style="color: var(--color-text-primary);">
-          Our Expertise
-        </h2>
-        <p class="text-xl leading-relaxed max-w-3xl mx-auto" style="color: var(--color-text-secondary);">
-          We specialize in cutting-edge technologies and industry trends that shape the future
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {BLOG_CATEGORIES.map((category, index) => (
-          <div 
-            class="card-hover p-8 text-center group animate-scale-in"
-            style={`animation-delay: ${index * 0.1}s; background-color: var(--color-surface); border: 1px solid var(--color-border);`}
-          >
-            <div class="mb-6">
-              <div 
-                class="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4 transition-transform duration-300 group-hover:scale-110"
-                style={`background: linear-gradient(135deg, var(--color-primary), var(--color-accent)); opacity: 0.1;`}
-              >
-                <div class="text-2xl">
-                  {category.id === 'technology' && '💻'}
-                  {category.id === 'fintech' && '💰'}
-                  {category.id === 'iot' && '🌐'}
-                  {category.id === 'security' && '🔒'}
-                  {category.id === 'acquisition' && '🤝'}
-                  {category.id === 'ai' && '🤖'}
-                </div>
-              </div>
-            </div>
-            <h3 class="text-2xl font-display font-bold mb-4" style="color: var(--color-text-primary);">
-              {category.name}
-            </h3>
-            <p style="color: var(--color-text-secondary);">
-              {category.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <ExpertiseAreas/>
 
   <!-- Values Section -->
-  <section class="py-20" style="background-color: var(--color-background);">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16 animate-fade-in-up">
-        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-8" style="color: var(--color-text-primary);">
-          Our Values
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        {[
-          {
-            icon: '🎯',
-            title: 'Precision',
-            description: 'We deliver accurate, well-researched content that you can trust and rely on for critical decisions.'
-          },
-          {
-            icon: '🚀',
-            title: 'Innovation',
-            description: 'We stay ahead of technological trends to bring you the latest insights and emerging opportunities.'
-          },
-          {
-            icon: '🤝',
-            title: 'Community',
-            description: 'We believe in fostering a community of learners, experts, and innovators working together.'
-          }
-        ].map((value, index) => (
-          <div class="text-center group animate-fade-in-up" style={`animation-delay: ${index * 0.2}s;`}>
-            <div class="mb-6">
-              <div 
-                class="w-20 h-20 mx-auto rounded-full flex items-center justify-center text-4xl transition-transform duration-300 group-hover:scale-110"
-                style="background: linear-gradient(135deg, var(--color-primary-light), var(--color-accent-light));"
-              >
-                {value.icon}
-              </div>
-            </div>
-            <h3 class="text-2xl font-display font-bold mb-4" style="color: var(--color-text-primary);">
-              {value.title}
-            </h3>
-            <p class="text-lg leading-relaxed" style="color: var(--color-text-secondary);">
-              {value.description}
-            </p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Values/>
 
   <!-- Call to Action -->
-  <section class="py-20" style="background: linear-gradient(135deg, var(--color-primary), var(--color-accent));">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="animate-fade-in-up">
-        <h2 class="text-4xl lg:text-5xl font-display font-bold mb-8 text-white">
-          Ready to Explore?
-        </h2>
-        <p class="text-xl leading-relaxed mb-12 text-white opacity-90">
-          Join thousands of readers who trust {SITE_CONFIG.name} for expert insights and innovative solutions.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-6 justify-center">
-          <a
-            href="/blogs"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 bg-white text-gray-900 hover:bg-gray-100 hover:transform hover:scale-105 shadow-lg"
-          >
-            Explore Articles
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-          <a
-            href="/contact"
-            class="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300 border-2 border-white text-white hover:bg-white hover:text-gray-900 hover:transform hover:scale-105"
-          >
-            Get in Touch
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  
 </BaseLayout>
