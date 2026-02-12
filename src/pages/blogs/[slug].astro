@@ -5,241 +5,1116 @@ import { formatDate } from '../../utils/format';
 import { featuredPosts } from '../../constants/featuredPosts';
 
 export async function getStaticPaths() {
-
-  return featuredPosts.map((post) => ({
-    params: { slug: post.slug },
-    props: { post },
-  }));
+    return featuredPosts.map(post => ({
+        params: { slug: post.slug },
+        props: { post },
+    }));
 }
 
 const { post } = Astro.props;
 const { slug } = Astro.params;
-
 ---
 
-<BaseLayout 
-  title={post.title}
-  description={post.excerpt}
-  keywords={post.seo.keywords}
-  image={post.featuredImage}
-  type="article"
-  publishedTime={post.publishedAt?.toISOString()}
-  modifiedTime={post.updatedAt?.toISOString()}
-  author="Aargonic Team"
-  section={post.category}
-  tags={post.tags}
+<BaseLayout
+    title={post.title}
+    description={post.excerpt}
+    keywords={post.seo.keywords}
+    image={post.featuredImage}
+    type="article"
+    publishedTime={post.publishedAt?.toISOString()}
+    modifiedTime={post.updatedAt?.toISOString()}
+    author="Aargonic Team"
+    section={post.category}
+    tags={post.tags}
 >
-  <article class="min-h-screen bg-[var(--color-background)]">
-    
-    <!-- Hero Section -->
-    <header class="relative">
-      <div class="w-full h-[340px] overflow-hidden">
-        <img 
-          src={post.featuredImage || '/images/placeholder-blog-detail.jpg'} 
-          alt={post.title}
-          class="w-full h-full object-cover"
-        />
-        <div class="absolute inset-0 bg-black/30"></div>
-      </div>
-      
-      <div class="absolute inset-0 flex items-end">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-          <div class="space-y-4">
-            <Badge variant="primary">
-              {post.category}
-            </Badge>
-            
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--color-text-primary)] leading-tight">
-              {post.title}
-            </h1>
-            
-            <div class="flex flex-wrap items-center text-[var(--color-text-secondary)] text-sm space-x-6">
-              <span>{formatDate(post.publishedAt || post.createdAt)}</span>
-              <span>•</span>
-              <span>{post.readingTime} min read</span>
-              <span>•</span>
-              <span>{post.views} views</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- Content -->
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-        
-        <!-- Article Content -->
-        <main class="lg:col-span-3">
-          <div class="prose prose-lg max-w-none text-[var(--color-text-primary)]">
-            <div class="text-xl text-[var(--color-text-secondary)] mb-8 leading-relaxed">
-              {post.excerpt}
-            </div>
-            
-            <div class="prose-content" set:html={post.content.replace(/\n/g, '<br/>')} />
-          </div>
-
-          <!-- Tags -->
-          <div class="mt-12 pt-8 border-t border-[var(--color-border)]">
-            <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Tags</h3>
-            <div class="flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <a 
-                  href={`/blog?tag=${tag}`}
-                  class="px-3 py-1 bg-[var(--color-surface-elevated)] text-[var(--color-text-secondary)] text-sm rounded-full hover:bg-[var(--color-primary-light)] hover:text-[var(--color-primary)] transition-colors"
-                >
-                  #{tag}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          <!-- Social Share -->
-          <div class="mt-8 pt-8 border-t border-[var(--color-border)]">
-            <h3 class="text-lg font-semibold text-[var(--color-text-primary)] mb-4">Share this article</h3>
-            <div class="flex space-x-4">
-              <a 
-                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(Astro.url.href)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center px-4 py-2 bg-[var(--color-primary)] text-[var(--color-background)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors"
-              >
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
-                </svg>
-                Twitter
-              </a>
-              
-              <a 
-                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="flex items-center px-4 py-2 bg-[var(--color-primary)] text-[var(--color-background)] rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors"
-              >
-                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                </svg>
-                LinkedIn
-              </a>
-            </div>
-          </div>
-        </main>
-
-        <!-- Sidebar -->
-        <aside class="lg:col-span-1">
-          <div class="sticky top-8 space-y-8">
-            
-            <!-- Author Info -->
-            <div class="bg-[var(--color-surface-elevated)] rounded-lg p-6">
-              <div class="flex items-center space-x-4 mb-4">
-                <img 
-                  src="/images/authors/team-avatar.jpg" 
-                  alt="Author"
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div>
-                  <h4 class="font-semibold text-[var(--color-text-primary)]">Aargonic Team</h4>
-                  <p class="text-sm text-[var(--color-text-secondary)]">Technology Experts</p>
+    <article class="article-wrapper">
+        <!-- Hero Section with Parallax Effect -->
+        <header class="hero-section">
+            <div class="hero-image-container">
+                <div class="hero-image-wrapper">
+                    <img
+                        src={post.featuredImage ||
+                            '/images/placeholder-blog-detail.jpg'}
+                        alt={post.title}
+                        class="hero-image"
+                    />
                 </div>
-              </div>
-              <p class="text-sm text-[var(--color-text-secondary)]">
-                Our team of technology experts brings decades of experience in fintech, 
-                IoT, cybersecurity, and emerging technologies.
-              </p>
+                <div class="hero-overlay"></div>
             </div>
 
-            <!-- Table of Contents -->
-            <div class="bg-[var(--color-surface-elevated)] border border-[var(--color-border)] rounded-lg p-6">
-              <h4 class="font-semibold text-[var(--color-text-primary)] mb-4">Table of Contents</h4>
-              <nav class="space-y-2">
-                {['current-landscape','ai-impact','challenges','road-ahead','conclusion'].map((id) => (
-                  <a href={`#${id}`} class="block text-sm text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]">
-                    {id.replace(/-/g,' ')}
-                  </a>
-                ))}
-              </nav>
+            <div class="hero-content">
+                <div class="hero-content-inner">
+                    <div class="hero-meta">
+                        <Badge variant="primary" className="hero-badge">
+                            {post.category}
+                        </Badge>
+                    </div>
+
+                    <h1 class="hero-title">
+                        {post.title}
+                    </h1>
+
+                    <div class="hero-info">
+                        <div class="info-item">
+                            <svg
+                                class="info-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                            <span
+                                >{
+                                    formatDate(
+                                        post.publishedAt || post.createdAt
+                                    )
+                                }</span
+                            >
+                        </div>
+                        <div class="info-separator">•</div>
+                        <div class="info-item">
+                            <svg
+                                class="info-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            <span>{post.readingTime} min read</span>
+                        </div>
+                        <div class="info-separator">•</div>
+                        <div class="info-item">
+                            <svg
+                                class="info-icon"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                                ></path>
+                            </svg>
+                            <span>{post.views} views</span>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </header>
 
-            <!-- Newsletter CTA -->
-            <div class="bg-[var(--color-primary-light)] border border-[var(--color-primary)] rounded-lg p-6">
-              <h4 class="font-semibold text-[var(--color-primary)] mb-2">Stay Updated</h4>
-              <p class="text-sm text-[var(--color-primary)] mb-4">
-                Get more insights like this delivered to your inbox.
-              </p>
-              <a 
-                href="/#newsletter" 
-                class="block w-full bg-[var(--color-primary)] text-[var(--color-background)] text-center py-2 px-4 rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors font-medium text-sm"
-              >
-                Subscribe Now
-              </a>
+        <!-- Main Content Area -->
+        <div class="content-container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="content-grid">
+                <!-- Article Content -->
+                <main class="article-main">
+                    <!-- Excerpt -->
+                    <div class="article-excerpt">
+                        {post.excerpt}
+                    </div>
+
+                    <!-- Content -->
+                    <div class="article-prose">
+                        <div
+                            class="prose-content"
+                            set:html={post.content.replace(/\n/g, '<br/>')}
+                        />
+                    </div>
+
+                    <!-- Tags Section -->
+                    <div class="tags-section">
+                        <h3 class="section-title">Related Topics</h3>
+                        <div class="tags-grid">
+                            {
+                                post.tags.map(tag => (
+                                    <a
+                                        href={`/blog?tag=${tag}`}
+                                        class="tag-item"
+                                    >
+                                        <span class="tag-hash">#</span>
+                                        <span class="tag-text">{tag}</span>
+                                    </a>
+                                ))
+                            }
+                        </div>
+                    </div>
+
+                    <!-- Social Share -->
+                    <div class="share-section">
+                        <div class="share-header">
+                            <h3 class="section-title">Share this article</h3>
+                            <p class="share-subtitle">
+                                Help others discover this content
+                            </p>
+                        </div>
+                        <div class="share-buttons">
+                            <a
+                                href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(Astro.url.href)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="share-btn share-twitter"
+                            >
+                                <svg
+                                    class="share-icon"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+                                    ></path>
+                                </svg>
+                                <span class="share-text">Twitter</span>
+                            </a>
+
+                            <a
+                                href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(Astro.url.href)}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="share-btn share-linkedin"
+                            >
+                                <svg
+                                    class="share-icon"
+                                    fill="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                                    ></path>
+                                </svg>
+                                <span class="share-text">LinkedIn</span>
+                            </a>
+
+                            <button
+                                class="share-btn share-copy"
+                                onclick="navigator.clipboard.writeText(window.location.href); this.querySelector('.share-text').textContent = 'Copied!'; setTimeout(() => this.querySelector('.share-text').textContent = 'Copy Link', 2000);"
+                            >
+                                <svg
+                                    class="share-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                    ></path>
+                                </svg>
+                                <span class="share-text">Copy Link</span>
+                            </button>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Sidebar -->
+                <aside class="article-sidebar">
+                    <div class="sidebar-sticky">
+                        <!-- Author Card -->
+                        <div class="author-card">
+                            <div class="author-header">
+                                <div class="author-avatar-wrapper">
+                                    <img
+                                        src="/images/authors/team-avatar.jpg"
+                                        alt="Aargonic Team"
+                                        class="author-avatar"
+                                    />
+                                    <div class="author-badge-dot"></div>
+                                </div>
+                                <div class="author-info">
+                                    <h4 class="author-name">Aargonic Team</h4>
+                                    <p class="author-role">
+                                        Technology Experts
+                                    </p>
+                                </div>
+                            </div>
+                            <p class="author-bio">
+                                Our team of technology experts brings decades of
+                                experience in fintech, IoT, cybersecurity, and
+                                emerging technologies.
+                            </p>
+                            <a href="/about" class="author-link">
+                                <span>View Profile</span>
+                                <svg
+                                    class="author-link-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </a>
+                        </div>
+
+                        <!-- Table of Contents -->
+                        <div class="toc-card">
+                            <h4 class="toc-title">
+                                <svg
+                                    class="toc-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M4 6h16M4 12h16M4 18h16"></path>
+                                </svg>
+                                Table of Contents
+                            </h4>
+                            <nav class="toc-nav">
+                                {
+                                    [
+                                        'current-landscape',
+                                        'ai-impact',
+                                        'challenges',
+                                        'road-ahead',
+                                        'conclusion',
+                                    ].map(id => (
+                                        <a href={`#${id}`} class="toc-link">
+                                            <span class="toc-marker" />
+                                            <span class="toc-text">
+                                                {id
+                                                    .split('-')
+                                                    .map(
+                                                        word =>
+                                                            word
+                                                                .charAt(0)
+                                                                .toUpperCase() +
+                                                            word.slice(1)
+                                                    )
+                                                    .join(' ')}
+                                            </span>
+                                        </a>
+                                    ))
+                                }
+                            </nav>
+                        </div>
+
+                        <!-- Newsletter CTA -->
+                        <div class="newsletter-card">
+                            <div class="newsletter-icon-wrapper">
+                                <svg
+                                    class="newsletter-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                                    ></path>
+                                </svg>
+                            </div>
+                            <h4 class="newsletter-title">Stay in the Loop</h4>
+                            <p class="newsletter-text">
+                                Get exclusive insights and updates delivered
+                                straight to your inbox.
+                            </p>
+                            <a href="/#newsletter" class="newsletter-btn">
+                                <span>Subscribe Now</span>
+                                <svg
+                                    class="newsletter-btn-icon"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </aside>
             </div>
-
-          </div>
-        </aside>
-
-      </div>
-    </div>
-  </article>
+        </div>
+    </article>
 </BaseLayout>
 
 <style>
-  .prose-content {
-    color: var(--color-text-primary);
-    line-height: 1.75;
-  }
-  
-  .prose-content h1,
-  .prose-content h2,
-  .prose-content h3,
-  .prose-content h4,
-  .prose-content h5,
-  .prose-content h6 {
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-  }
-  
-  .prose-content h1 { font-size: 2rem; }
-  .prose-content h2 { font-size: 1.75rem; }
-  .prose-content h3 { font-size: 1.5rem; }
-  .prose-content h4 { font-size: 1.25rem; }
-  
-  .prose-content p {
-    margin-bottom: 1.5rem;
-  }
-  
-  .prose-content ul,
-  .prose-content ol {
-    margin-bottom: 1.5rem;
-    padding-left: 1.5rem;
-  }
-  
-  .prose-content li {
-    margin-bottom: 0.5rem;
-  }
-  
-  .prose-content blockquote {
-    border-left: 4px solid var(--color-primary);
-    padding-left: 1.5rem;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-    margin: 1.5rem 0;
-    font-style: italic;
-    background-color: var(--color-primary-light);
-    color: var(--color-text-secondary);
-  }
-  
-  .prose-content code {
-    background-color: var(--color-surface-elevated);
-    padding: 0.125rem 0.25rem;
-    border-radius: 0.25rem;
-    font-size: 0.875rem;
-    font-family: monospace;
-  }
-  
-  .prose-content strong {
-    font-weight: 600;
-    color: var(--color-text-primary);
-  }
+    /* ===========================
+     VARIABLES & BASE STYLES
+     =========================== */
+    .article-wrapper {
+        min-height: 100vh;
+        background: var(--color-background);
+    }
+
+    /* ===========================
+     HERO SECTION
+     =========================== */
+    .hero-section {
+        position: relative;
+        width: 100%;
+        min-height: clamp(400px, 60vh, 700px);
+        display: flex;
+        align-items: flex-end;
+        overflow: hidden;
+    }
+
+    .hero-image-container {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .hero-image-wrapper {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .hero-section:hover .hero-image {
+        transform: scale(1.05);
+    }
+
+    .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.2) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 0, 0, 0.8) 100%
+        );
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 10;
+        width: 100%;
+        padding: 2rem 1rem 3rem;
+    }
+
+    .hero-content-inner {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 0 1rem;
+    }
+
+    .hero-meta {
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+
+    .hero-badge {
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    .hero-title {
+        font-family: var(--font-display);
+        font-size: clamp(1.75rem, 5vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        color: white;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 0.6s ease-out 0.2s both;
+    }
+
+    .hero-info {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 0.875rem;
+        font-weight: 500;
+        animation: fadeInUp 0.6s ease-out 0.3s both;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .info-icon {
+        width: 1.125rem;
+        height: 1.125rem;
+        opacity: 0.8;
+    }
+
+    .info-separator {
+        opacity: 0.5;
+    }
+
+    /* ===========================
+     CONTENT CONTAINER
+     =========================== */
+    .content-container {
+        /* max-width: 90rem; */
+        margin: 0 auto;
+        /* padding: 3rem 1rem; */
+    }
+
+    .content-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    @media (min-width: 1024px) {
+        .content-container {
+            padding: 4rem 2rem;
+        }
+
+        .content-grid {
+            grid-template-columns: 1fr 380px;
+            gap: 4rem;
+        }
+    }
+
+    /* ===========================
+     ARTICLE MAIN
+     =========================== */
+    .article-main {
+        max-width: 100%;
+    }
+
+    .article-excerpt {
+        font-size: clamp(1.125rem, 2vw, 1.375rem);
+        line-height: 1.7;
+        color: var(--color-text-secondary);
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--color-border);
+        animation: fadeInUp 0.6s ease-out 0.4s both;
+    }
+
+    .article-prose {
+        animation: fadeInUp 0.6s ease-out 0.5s both;
+    }
+
+    /* ===========================
+     PROSE CONTENT
+     =========================== */
+    .prose-content {
+        color: var(--color-text-primary);
+        line-height: 1.8;
+        font-size: 1.0625rem;
+    }
+
+    .prose-content h1,
+    .prose-content h2,
+    .prose-content h3,
+    .prose-content h4,
+    .prose-content h5,
+    .prose-content h6 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-top: 2.5rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.3;
+        scroll-margin-top: 2rem;
+    }
+
+    .prose-content h1 {
+        font-size: clamp(1.875rem, 4vw, 2.25rem);
+    }
+    .prose-content h2 {
+        font-size: clamp(1.625rem, 3.5vw, 2rem);
+    }
+    .prose-content h3 {
+        font-size: clamp(1.375rem, 3vw, 1.75rem);
+    }
+    .prose-content h4 {
+        font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    }
+
+    .prose-content p {
+        margin-bottom: 1.75rem;
+        color: var(--color-text-secondary);
+    }
+
+    .prose-content ul,
+    .prose-content ol {
+        margin-bottom: 1.75rem;
+        padding-left: 1.75rem;
+        color: var(--color-text-secondary);
+    }
+
+    .prose-content li {
+        margin-bottom: 0.75rem;
+        padding-left: 0.5rem;
+    }
+
+    .prose-content ul li::marker {
+        color: var(--color-primary);
+        font-weight: 600;
+    }
+
+    .prose-content ol li::marker {
+        color: var(--color-primary);
+        font-weight: 700;
+    }
+
+    .prose-content blockquote {
+        position: relative;
+        border-left: 4px solid var(--color-primary);
+        padding: 1.5rem 1.5rem 1.5rem 2rem;
+        margin: 2.5rem 0;
+        font-style: italic;
+        font-size: 1.125rem;
+        background: var(--color-primary-light);
+        color: var(--color-text-primary);
+        border-radius: 0 0.75rem 0.75rem 0;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .prose-content blockquote::before {
+        content: '"';
+        position: absolute;
+        top: -0.5rem;
+        left: 1rem;
+        font-size: 4rem;
+        color: var(--color-primary);
+        opacity: 0.2;
+        font-family: Georgia, serif;
+        line-height: 1;
+    }
+
+    .prose-content code {
+        background-color: var(--color-surface-elevated);
+        padding: 0.25rem 0.5rem;
+        border-radius: 0.375rem;
+        font-size: 0.9em;
+        font-family: 'Courier New', Courier, monospace;
+        border: 1px solid var(--color-border);
+    }
+
+    .prose-content strong {
+        font-weight: 700;
+        color: var(--color-text-primary);
+    }
+
+    .prose-content a {
+        color: var(--color-primary);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 3px;
+        transition: all 0.2s ease;
+    }
+
+    .prose-content a:hover {
+        color: var(--color-primary-hover);
+        text-decoration-thickness: 2px;
+    }
+
+    /* ===========================
+     TAGS SECTION
+     =========================== */
+    .tags-section {
+        margin-top: 4rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .section-title {
+        font-family: var(--font-display);
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1.5rem;
+    }
+
+    .tags-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+    }
+
+    .tag-item {
+        display: inline-flex;
+        align-items: center;
+        padding: 0.625rem 1.125rem;
+        background: var(--color-surface-elevated);
+        color: var(--color-text-secondary);
+        font-size: 0.9375rem;
+        font-weight: 500;
+        border-radius: 2rem;
+        border: 1px solid var(--color-border);
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .tag-item:hover {
+        background: var(--color-primary-light);
+        color: var(--color-primary);
+        border-color: var(--color-primary);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .tag-hash {
+        margin-right: 0.25rem;
+        opacity: 0.6;
+    }
+
+    /* ===========================
+     SHARE SECTION
+     =========================== */
+    .share-section {
+        margin-top: 3rem;
+        padding-top: 3rem;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .share-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .share-subtitle {
+        color: var(--color-text-muted);
+        font-size: 0.9375rem;
+        margin-top: 0.5rem;
+    }
+
+    .share-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .share-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        border: none;
+        cursor: pointer;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .share-twitter {
+        background: #1da1f2;
+        color: white;
+    }
+
+    .share-twitter:hover {
+        background: #1a8cd8;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .share-linkedin {
+        background: #0a66c2;
+        color: white;
+    }
+
+    .share-linkedin:hover {
+        background: #095196;
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .share-copy {
+        background: var(--color-surface);
+        color: var(--color-text-primary);
+        border: 1px solid var(--color-border);
+    }
+
+    .share-copy:hover {
+        background: var(--color-surface-elevated);
+        border-color: var(--color-primary);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .share-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+
+    /* ===========================
+     SIDEBAR
+     =========================== */
+    .article-sidebar {
+        width: 100%;
+    }
+
+    .sidebar-sticky {
+        position: sticky;
+        top: 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+
+    @media (max-width: 1023px) {
+        .sidebar-sticky {
+            position: static;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+    }
+
+    @media (min-width: 640px) and (max-width: 1023px) {
+        .sidebar-sticky {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .newsletter-card {
+            grid-column: 1 / -1;
+        }
+    }
+
+    /* ===========================
+     AUTHOR CARD
+     =========================== */
+    .author-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 1.75rem;
+        box-shadow: var(--shadow-sm);
+        transition: all 0.3s ease;
+    }
+
+    .author-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-2px);
+    }
+
+    .author-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+        margin-bottom: 1.25rem;
+    }
+
+    .author-avatar-wrapper {
+        position: relative;
+        flex-shrink: 0;
+    }
+
+    .author-avatar {
+        width: 3.5rem;
+        height: 3.5rem;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid var(--color-border);
+    }
+
+    .author-badge-dot {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 1rem;
+        height: 1rem;
+        background: var(--color-success);
+        border: 2px solid var(--color-surface);
+        border-radius: 50%;
+    }
+
+    .author-info {
+        flex: 1;
+    }
+
+    .author-name {
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 0.25rem;
+    }
+
+    .author-role {
+        font-size: 0.875rem;
+        color: var(--color-text-muted);
+    }
+
+    .author-bio {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.25rem;
+    }
+
+    .author-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--color-primary);
+        font-size: 0.9375rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .author-link:hover {
+        color: var(--color-primary-hover);
+        gap: 0.75rem;
+    }
+
+    .author-link-icon {
+        width: 1rem;
+        height: 1rem;
+        transition: transform 0.2s ease;
+    }
+
+    .author-link:hover .author-link-icon {
+        transform: translateX(2px);
+    }
+
+    /* ===========================
+     TABLE OF CONTENTS
+     =========================== */
+    .toc-card {
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: 1rem;
+        padding: 1.75rem;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .toc-title {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-family: var(--font-display);
+        font-size: 1.125rem;
+        font-weight: 700;
+        color: var(--color-text-primary);
+        margin-bottom: 1.25rem;
+    }
+
+    .toc-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+        color: var(--color-primary);
+    }
+
+    .toc-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 0.625rem;
+    }
+
+    .toc-link {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.625rem 0.875rem;
+        border-radius: 0.5rem;
+        font-size: 0.9375rem;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        transition: all 0.2s ease;
+        position: relative;
+    }
+
+    .toc-link:hover {
+        background: var(--color-surface-elevated);
+        color: var(--color-primary);
+        padding-left: 1.125rem;
+    }
+
+    .toc-marker {
+        width: 0.375rem;
+        height: 0.375rem;
+        border-radius: 50%;
+        background: var(--color-border);
+        flex-shrink: 0;
+        transition: all 0.2s ease;
+    }
+
+    .toc-link:hover .toc-marker {
+        background: var(--color-primary);
+        transform: scale(1.3);
+    }
+
+    /* ===========================
+     NEWSLETTER CARD
+     =========================== */
+    .newsletter-card {
+        background: linear-gradient(
+            135deg,
+            var(--color-primary-light) 0%,
+            var(--color-accent-light) 100%
+        );
+        border: 1px solid var(--color-primary);
+        border-radius: 1rem;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+        transition: all 0.3s ease;
+    }
+
+    .newsletter-card:hover {
+        box-shadow: var(--shadow-xl);
+        transform: translateY(-2px);
+    }
+
+    .newsletter-icon-wrapper {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 3.5rem;
+        height: 3.5rem;
+        background: var(--color-primary);
+        border-radius: 50%;
+        margin-bottom: 1.25rem;
+    }
+
+    .newsletter-icon {
+        width: 1.75rem;
+        height: 1.75rem;
+        color: white;
+    }
+
+    .newsletter-title {
+        font-family: var(--font-display);
+        font-size: 1.375rem;
+        font-weight: 700;
+        color: var(--color-primary);
+        margin-bottom: 0.75rem;
+    }
+
+    .newsletter-text {
+        font-size: 0.9375rem;
+        line-height: 1.6;
+        color: var(--color-text-secondary);
+        margin-bottom: 1.5rem;
+    }
+
+    .newsletter-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.625rem;
+        padding: 0.875rem 1.75rem;
+        background: var(--color-primary);
+        color: white;
+        font-size: 0.9375rem;
+        font-weight: 600;
+        border-radius: 0.75rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-md);
+    }
+
+    .newsletter-btn:hover {
+        background: var(--color-primary-hover);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-lg);
+        gap: 0.875rem;
+    }
+
+    .newsletter-btn-icon {
+        width: 1.125rem;
+        height: 1.125rem;
+        transition: transform 0.3s ease;
+    }
+
+    .newsletter-btn:hover .newsletter-btn-icon {
+        transform: translateX(2px);
+    }
+
+    /* ===========================
+     ANIMATIONS
+     =========================== */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* ===========================
+     RESPONSIVE ADJUSTMENTS
+     =========================== */
+    @media (max-width: 639px) {
+        .hero-content {
+            padding: 1.5rem 0.75rem 2rem;
+        }
+
+        .hero-title {
+            font-size: 1.75rem;
+        }
+
+        .hero-info {
+            font-size: 0.8125rem;
+        }
+
+        .info-separator {
+            display: none;
+        }
+
+        .content-container {
+            padding: 2rem 1rem;
+        }
+
+        .article-excerpt {
+            font-size: 1.125rem;
+            margin-bottom: 2rem;
+        }
+
+        .share-buttons {
+            flex-direction: column;
+        }
+
+        .share-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
 </style>
